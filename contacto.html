@@ -11,7 +11,7 @@
 <body>
   <aside class="sidebar">
     <div class="profile">
-      <img src="images/profile.jpg" alt="Foto de perfil" />
+      <img src="images/foto-perfil.jpg" alt="Foto de perfil" />
       <h2 class="name">Tu Nombre</h2>
       <p class="title">Tecnólogo en Desarrollo de Software</p>
     </div>
@@ -22,6 +22,11 @@
         <li><a href="proyectos.html" class="nav-link"><i class="fas fa-code icon"></i><span class="text">Proyectos</span></a></li>
         <li><a href="habilidades.html" class="nav-link"><i class="fas fa-laptop-code icon"></i><span class="text">Habilidades</span></a></li>
         <li><a href="contacto.html" class="nav-link"><i class="fas fa-envelope icon"></i><span class="text">Contacto</span></a></li>
+        <li>
+          <button id="themeToggle" class="nav-link" style="width:100%; background:none; border:none; cursor:pointer;">
+            <i class="fas fa-sun icon"></i><span class="text">Modo Día</span>
+          </button>
+        </li>
       </ul>
     </nav>
   </aside>
@@ -29,16 +34,28 @@
   <main class="main-content">
     <section class="section">
       <h2>Contacto</h2>
-      <p><i class="fas fa-envelope"></i> tu.email.profesional@gmail.com</p>
-      <p><i class="fas fa-phone"></i> +57 300 123 4567</p>
-      <p><i class="fas fa-map-marker-alt"></i> Zarzal, Valle del Cauca, Colombia</p>
       <div class="social-links">
-        <a href="https://github.com/tuusuario" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-        <a href="https://linkedin.com/in/tuusuario" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <!-- Contacto directo -->
+        <a href="mailto:tu.email.profesional@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i>Email</a>
+        <a href="tel:+573001234567" aria-label="Teléfono"><i class="fas fa-phone"></i>Teléfono</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Zarzal%2C+Valle+del+Cauca%2C+Colombia" target="_blank" rel="noopener" aria-label="Ubicación"><i class="fas fa-map-marker-alt"></i>Ubicación</a>
+
+        <!-- Redes sociales -->
+        <a href="https://github.com/tuusuario" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i>GitHub</a>
+        <a href="https://linkedin.com/in/tuusuario" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i>LinkedIn</a>
+        <a href="https://wa.me/573001234567" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i>WhatsApp</a>
+        <a href="https://instagram.com/tuusuario" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i>Instagram</a>
+        <a href="https://x.com/tuusuario" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i>X</a>
       </div>
     </section>
   </main>
 
-  <script src="js/main.js"></script>
+  <!-- Modal para ver imagen ampliada -->
+  <div id="imgModal" class="img-modal" aria-hidden="true">
+    <button class="img-modal__close" aria-label="Cerrar imagen">&times;</button>
+    <img class="img-modal__image" alt="Foto de perfil ampliada" />
+  </div>
+
+  <script src="js/scripts.js"></script>
 </body>
 </html>

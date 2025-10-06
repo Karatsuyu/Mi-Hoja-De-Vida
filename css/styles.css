@@ -1,3 +1,4 @@
+@import url(https://use.fontawesome.com/releases/v5.15.4/css/all.css);
   /* Reset y base */
 * {
   margin: 0;
@@ -44,6 +45,8 @@ body {
 .sidebar:hover {
   width: var(--sidebar-expanded);
   background: rgba(0,0,0,0.25);
+  border: 1px solid var(--primary);
+  border-radius: 10px;
 }
 
 .profile {
@@ -238,6 +241,138 @@ body {
   margin-right: 6px;
 }
 
+/* Estilos especiales para los contactos (iconos circulares con reflejo) */
+.social-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.social-links a {
+  margin: 0 10px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  transition: 0.5s;
+  background: #000;
+  color: var(--primary);
+  /* Ocultar el texto del enlace, dejamos solo el icono visible */
+  font-size: 0;
+  -webkit-box-reflect: below 5px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
+}
+
+.social-links a i {
+  font-size: 2.5rem; /* Tamaño grande del icono */
+  margin: 0; /* quitar margen lateral del icono */
+}
+
+.social-links a:hover {
+  background: var(--primary);
+  color: #000;
+  box-shadow: 0 0 5px var(--primary),
+              0 0 25px var(--primary),
+              0 0 50px var(--primary),
+              0 0 200px var(--primary);
+}
+
+/* Modal de imagen (lightbox) */
+.img-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.img-modal.is-open {
+  display: flex;
+}
+
+.img-modal__image {
+  max-width: 90vw;
+  max-height: 85vh;
+  border-radius: 10px;
+  border: 2px solid var(--primary);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.img-modal__close {
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  font-size: 2rem;
+  color: #fff;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* Transición circular para cambio de tema */
+.theme-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  pointer-events: none; /* evitar interacciones durante la animación */
+}
+
+.theme-overlay__circle {
+  position: absolute;
+  left: var(--cx);
+  top: var(--cy);
+  width: var(--diameter);
+  height: var(--diameter);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background: var(--overlay-bg, #fff);
+  transition: transform 600ms ease;
+  will-change: transform;
+}
+
+.theme-overlay.is-expanding .theme-overlay__circle {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.theme-overlay.is-collapsing .theme-overlay__circle {
+  transform: translate(-50%, -50%) scale(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-overlay__circle {
+    transition: none;
+  }
+}
+
+/* Overlay de revelado radial (muestra el nuevo tema dentro del círculo) */
+.theme-reveal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  pointer-events: none;
+  /* r = radio dinámico; cx/cy = centro */
+  --r: 0px;
+  --cx: 50%;
+  --cy: 50%;
+  background: radial-gradient(circle at var(--cx) var(--cy),
+    rgba(0,0,0,0) 0 var(--r),
+    var(--overlay-bg, #000) calc(var(--r) + 1px)
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-reveal {
+    transition: none;
+  }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .sidebar {
@@ -252,3 +387,62 @@ body {
     visibility: visible !important;
   }
 }
+
+/* ================================
+   Modo Día (Light Theme)
+   Activa con body[data-theme="light"]
+   ================================ */
+body[data-theme="light"] {
+  /* Paleta clara */
+  --primary: #2563eb;
+  --dark: #1e293b;
+  --light: #f8fafc;
+  --gray: #64748b;
+  background: #f1f5f9;
+  color: var(--dark);
+}
+
+body[data-theme="light"] .sidebar {
+  background: #ffffff;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+  border: 1px solid #006eff;
+  border-right: none;
+}
+
+body[data-theme="light"] .sidebar:hover {
+  width: var(--sidebar-expanded);
+  background: #ffffff;
+}
+
+body[data-theme="light"] .nav-link {
+  color: var(--dark);
+}
+
+body[data-theme="light"] .nav-link:hover {
+  background-color: #dbeafe;
+  color: var(--primary);
+}
+
+body[data-theme="light"] .main-content {
+  background: transparent;
+  color: var(--dark);
+}
+
+body[data-theme="light"] .section {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+body[data-theme="light"] .card,
+body[data-theme="light"] .project-card {
+  background: #f8fafc;
+  color: var(--dark);
+}
+
+/* Contact icons maintain dark circle; tweak hover for accessibility */
+body[data-theme="light"] .social-links a:hover {
+  color: #000;
+}
+
+
