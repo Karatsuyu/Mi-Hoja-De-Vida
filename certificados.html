@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- PDF.js para renderizar PDFs sin barras de scroll nativas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 </head>
 <body>
   <aside class="sidebar">
@@ -37,19 +39,25 @@
       <h2>Certificados</h2>
       <div class="project-grid">
         <div class="project-card">
-          <object data="docs/Julián Estiven _julian.estiven.gutierrez@correounivalle.edu.co.pdf#toolbar=0&scrollbar=0" type="application/pdf" class="project-image" id="fondo-certificado"></object>
+          <div class="pdf-preview-container">
+            <canvas id="pdf-canvas-preview"></canvas>
+          </div>
           <h3>Desarrollo de Software con IA</h3>
           <p>Certificado en desarrollo de software con herramientas de inteligencia artificial.</p>
           <button class="btn open-modal-btn" data-modal="modal1">Ver Certificado</button>
         </div>
         <div class="project-card">
-          <img src="images/1756766660817.png" alt="Certificado 2" class="project-image">
+          <div class="pdf-preview-container">
+            <canvas id="pdf-canvas-preview-2"></canvas>
+          </div>
           <h3>Certificado 2</h3>
           <p>Descripción del certificado 2.</p>
           <button class="btn open-modal-btn" data-modal="modal2">Ver Certificado</button>
         </div>
         <div class="project-card">
-          <img src="images/1756766660817.png" alt="Certificado 3" class="project-image">
+          <div class="pdf-preview-container">
+            <canvas id="pdf-canvas-preview-3"></canvas>
+          </div>
           <h3>Certificado 3</h3>
           <p>Descripción del certificado 3.</p>
           <button class="btn open-modal-btn" data-modal="modal3">Ver Certificado</button>
@@ -58,32 +66,241 @@
     </section>
   </main>
 
-  <!-- Modals for certificates -->
-  <!-- <div id="modal1" class="modal">
-    <div class="modal-content" style="height: 90vh; width: 80vw; padding: 0;">
-      <span class="close-modal-btn">&times;</span>
-      <object data="docs/certificados.pdf" type="application/pdf" style="width: 100%; height: 100%;">
-        <p>Tu navegador no soporta la visualización de PDFs. Puedes <a href="docs/certificados.pdf">descargarlo aquí</a>.</p>
-      </object>
+  <!-- Modales para ver certificados completos -->
+  <div id="modal1" class="cert-modal">
+    <div class="cert-modal-overlay"></div>
+    <div class="cert-modal-content">
+      <button class="cert-modal-close" aria-label="Cerrar">&times;</button>
+      <div class="cert-modal-body">
+        <canvas id="pdf-canvas-modal-1"></canvas>
+      </div>
     </div>
   </div>
-  <div id="modal2" class="modal">
-    <div class="modal-content" style="height: 90vh; width: 80vw; padding: 0;">
-      <span class="close-modal-btn">&times;</span>
-      <object data="docs/certificados.pdf" type="application/pdf" style="width: 100%; height: 100%;">
-        <p>Tu navegador no soporta la visualización de PDFs. Puedes <a href="docs/certificados.pdf">descargarlo aquí</a>.</p>
-      </object>
+
+  <div id="modal2" class="cert-modal">
+    <div class="cert-modal-overlay"></div>
+    <div class="cert-modal-content">
+      <button class="cert-modal-close" aria-label="Cerrar">&times;</button>
+      <div class="cert-modal-body">
+        <canvas id="pdf-canvas-modal-2"></canvas>
+      </div>
     </div>
   </div>
-  <div id="modal3" class="modal">
-    <div class="modal-content" style="height: 90vh; width: 80vw; padding: 0;">
-      <span class="close-modal-btn">&times;</span>
-      <object data="docs/certificados.pdf" type="application/pdf" style="width: 100%; height: 100%;">
-        <p>Tu navegador no soporta la visualización de PDFs. Puedes <a href="docs/certificados.pdf">descargarlo aquí</a>.</p>
-      </object>
+
+  <div id="modal3" class="cert-modal">
+    <div class="cert-modal-overlay"></div>
+    <div class="cert-modal-content">
+      <button class="cert-modal-close" aria-label="Cerrar">&times;</button>
+      <div class="cert-modal-body">
+        <canvas id="pdf-canvas-modal-3"></canvas>
+      </div>
     </div>
-  </div> -->
+  </div>
 
   <script src="js/scripts.js"></script>
+  
+  <!-- Script para renderizar PDFs en canvas sin scroll -->
+  <script>
+    // Configurar PDF.js worker
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    
+    // Función genérica para renderizar un PDF en un canvas específico
+    async function renderPDFInCanvas(pdfUrl, canvasId) {
+      const canvas = document.getElementById(canvasId);
+      
+      if (!canvas) {
+        console.warn(`Canvas con ID "${canvasId}" no encontrado`);
+        return;
+      }
+      
+      try {
+        // Cargar el PDF
+        const loadingTask = pdfjsLib.getDocument(pdfUrl);
+        const pdf = await loadingTask.promise;
+        
+        // Obtener la primera página
+        const page = await pdf.getPage(1);
+        
+        // Preparar el canvas
+        const context = canvas.getContext('2d');
+        const container = canvas.parentElement;
+        const containerWidth = container.offsetWidth;
+        const containerHeight = container.offsetHeight;
+        
+        // Calcular escala para que ocupe todo el ancho (priorizar ancho completo)
+        const viewport = page.getViewport({ scale: 1.0 });
+        const scale = containerWidth / viewport.width;
+        
+        const scaledViewport = page.getViewport({ scale: scale });
+        
+        // Configurar dimensiones del canvas
+        canvas.width = scaledViewport.width;
+        canvas.height = scaledViewport.height;
+        
+        // Renderizar la página
+        const renderContext = {
+          canvasContext: context,
+          viewport: scaledViewport
+        };
+        
+        await page.render(renderContext).promise;
+        
+      } catch (error) {
+        console.error(`Error al cargar el PDF (${canvasId}):`, error);
+        // Mostrar mensaje de error en el canvas
+        const context = canvas.getContext('2d');
+        canvas.width = container.offsetWidth;
+        canvas.height = container.offsetHeight;
+        context.fillStyle = '#ffffff';
+        context.font = '14px Inter, sans-serif';
+        context.textAlign = 'center';
+        context.fillText('Error al cargar el certificado', canvas.width / 2, canvas.height / 2);
+      }
+    }
+    
+    // Renderizar todos los certificados
+    async function renderAllCertificates() {
+      // Certificado 1
+      await renderPDFInCanvas(
+        'docs/Julián Estiven _julian.estiven.gutierrez@correounivalle.edu.co.pdf',
+        'pdf-canvas-preview'
+      );
+      
+      // Certificado 2 - Cambia esta ruta por tu segundo certificado PDF
+      await renderPDFInCanvas(
+        'docs/Certificado_Ingles_Ame_Horizontal.pdf',
+        'pdf-canvas-preview-2'
+      );
+      
+      // Certificado 3 - Cambia esta ruta por tu tercer certificado PDF
+      await renderPDFInCanvas(
+        'docs/Certificado_Ingles_Ame_A2_Horizontal.pdf',
+        'pdf-canvas-preview-3'
+      );
+    }
+    
+    // Ejecutar cuando el DOM esté listo
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', renderAllCertificates);
+    } else {
+      renderAllCertificates();
+    }
+
+    // ====================================
+    // Sistema de modales para certificados
+    // ====================================
+    
+    // Mapeo de modales y sus PDFs
+    const certificateData = {
+      modal1: {
+        pdf: 'docs/Julián Estiven _julian.estiven.gutierrez@correounivalle.edu.co.pdf',
+        canvas: 'pdf-canvas-modal-1'
+      },
+      modal2: {
+        pdf: 'docs/Certificado_Ingles_Ame_Horizontal.pdf',
+        canvas: 'pdf-canvas-modal-2'
+      },
+      modal3: {
+        pdf: 'docs/Certificado_Ingles_Ame_A2_Horizontal.pdf',
+        canvas: 'pdf-canvas-modal-3'
+      }
+    };
+
+    // Renderizar PDF en modal (completo, con todas las páginas si es necesario)
+    async function renderPDFInModal(pdfUrl, canvasId) {
+      const canvas = document.getElementById(canvasId);
+      if (!canvas) return;
+
+      try {
+        const loadingTask = pdfjsLib.getDocument(pdfUrl);
+        const pdf = await loadingTask.promise;
+        
+        // Renderizar la primera página completa
+        const page = await pdf.getPage(1);
+        const context = canvas.getContext('2d');
+        
+        // Calcular escala para mostrar el PDF completo en pantalla
+        const viewport = page.getViewport({ scale: 1.0 });
+        const maxWidth = window.innerWidth * 0.85;
+        const maxHeight = window.innerHeight * 0.85;
+        
+        const scale = Math.min(
+          maxWidth / viewport.width,
+          maxHeight / viewport.height
+        );
+        
+        const scaledViewport = page.getViewport({ scale: scale });
+        
+        canvas.width = scaledViewport.width;
+        canvas.height = scaledViewport.height;
+        
+        await page.render({
+          canvasContext: context,
+          viewport: scaledViewport
+        }).promise;
+        
+      } catch (error) {
+        console.error('Error al cargar el PDF en modal:', error);
+      }
+    }
+
+    // Abrir modal
+    function openCertModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (!modal) return;
+
+      const data = certificateData[modalId];
+      if (!data) return;
+
+      // Mostrar modal
+      modal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+
+      // Renderizar PDF
+      renderPDFInModal(data.pdf, data.canvas);
+    }
+
+    // Cerrar modal
+    function closeCertModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (!modal) return;
+
+      modal.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    // Event listeners para los botones "Ver Certificado"
+    document.querySelectorAll('.open-modal-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const modalId = btn.getAttribute('data-modal');
+        if (modalId) openCertModal(modalId);
+      });
+    });
+
+    // Event listeners para cerrar modales
+    document.querySelectorAll('.cert-modal-close').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const modal = btn.closest('.cert-modal');
+        if (modal) closeCertModal(modal.id);
+      });
+    });
+
+    // Cerrar al hacer clic en el overlay
+    document.querySelectorAll('.cert-modal-overlay').forEach(overlay => {
+      overlay.addEventListener('click', () => {
+        const modal = overlay.closest('.cert-modal');
+        if (modal) closeCertModal(modal.id);
+      });
+    });
+
+    // Cerrar con tecla Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.cert-modal.is-open').forEach(modal => {
+          closeCertModal(modal.id);
+        });
+      }
+    });
+  </script>
 </body>
 </html>
