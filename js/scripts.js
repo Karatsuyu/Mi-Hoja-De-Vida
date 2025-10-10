@@ -146,3 +146,73 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
   }
 })();
+
+// ==========================================
+// Barras de progreso semicirculares en flip cards
+// ==========================================
+(function () {
+  // Función para animar contador de porcentaje
+  function animatePercentage(element, target) {
+    let current = 0;
+    const increment = target / 60; // 60 frames aproximadamente
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        element.textContent = target + '%';
+        clearInterval(timer);
+      } else {
+        element.textContent = Math.round(current) + '%';
+      }
+    }, 25);
+  }
+
+  // Inicializar tarjetas flip con barras de progreso
+  const flipCards = document.querySelectorAll('.flip-card');
+
+  flipCards.forEach(card => {
+    const percent = card.dataset.percent;
+    const color = card.dataset.color;
+    const label = card.dataset.label;
+    const backCard = card.querySelector('.flip-card-back');
+
+    if (!backCard || !percent) return;
+
+    // Crear SVG semicircular
+    const svgHTML = `
+      <div class="skill-progress">
+        <svg viewBox="0 -7 180 97">
+          <path class="bg" d="M10 80 A80 80 0 0 1 170 80"></path>
+          <path class="progress" d="M10 80 A80 80 0 0 1 170 80" 
+                stroke="${color}" 
+                style="stroke-dashoffset: 283;"></path>
+        </svg>
+        <div class="info">
+          <div class="percent">0%</div>
+          <div class="label">${label}</div>
+        </div>
+      </div>
+    `;
+
+    backCard.innerHTML = svgHTML;
+
+    // Animar cuando la tarjeta se voltea
+    let animated = false;
+    const progressPath = backCard.querySelector('.progress');
+    const percentElement = backCard.querySelector('.percent');
+
+    card.addEventListener('mouseenter', () => {
+      if (!animated) {
+        animated = true;
+        setTimeout(() => {
+          // Calcular stroke-dashoffset basado en el porcentaje
+          const circumference = 283;
+          const offset = circumference - (circumference * percent / 100);
+          progressPath.style.strokeDashoffset = offset;
+
+          // Animar el contador
+          animatePercentage(percentElement, parseInt(percent));
+        }, 300); // Esperar a que termine la animación de flip
+      }
+    });
+  });
+})();
