@@ -196,23 +196,38 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     backCard.innerHTML = svgHTML;
 
     // Animar cuando la tarjeta se voltea
-    let animated = false;
     const progressPath = backCard.querySelector('.progress');
     const percentElement = backCard.querySelector('.percent');
 
-    card.addEventListener('mouseenter', () => {
-      if (!animated) {
-        animated = true;
-        setTimeout(() => {
-          // Calcular stroke-dashoffset basado en el porcentaje
-          const circumference = 283;
-          const offset = circumference - (circumference * percent / 100);
-          progressPath.style.strokeDashoffset = offset;
+    // Función para reiniciar y animar
+    function startAnimation() {
+      // Resetear la barra y el contador
+      progressPath.style.transition = 'none';
+      progressPath.style.strokeDashoffset = '283';
+      percentElement.textContent = '0%';
 
-          // Animar el contador
-          animatePercentage(percentElement, parseInt(percent));
-        }, 300); // Esperar a que termine la animación de flip
-      }
+      // Forzar reflow para que el reseteo surta efecto
+      void progressPath.offsetWidth;
+
+      // Restaurar transición y animar
+      setTimeout(() => {
+        progressPath.style.transition = 'stroke-dashoffset 1.5s ease';
+        
+        // Calcular stroke-dashoffset basado en el porcentaje
+        const circumference = 283;
+        const offset = circumference - (circumference * percent / 100);
+        progressPath.style.strokeDashoffset = offset;
+
+        // Animar el contador
+        animatePercentage(percentElement, parseInt(percent));
+      }, 50);
+    }
+
+    // Detectar cuando la tarjeta se voltea (mouseenter)
+    card.addEventListener('mouseenter', () => {
+      setTimeout(() => {
+        startAnimation();
+      }, 300); // Esperar a que termine la animación de flip
     });
   });
 })();
