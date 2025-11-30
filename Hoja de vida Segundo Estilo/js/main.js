@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     // Color mapping (HSL values)
     const colors = {
+      magenta: { hue: 280, saturation: 100, lightness: 50 },
       purple: { hue: 270, saturation: 100, lightness: 50 },
       red: { hue: 0, saturation: 100, lightness: 50 },
       orange: { hue: 30, saturation: 100, lightness: 50 },

@@ -10,11 +10,11 @@
   --bg: #0b0815; /* fondo principal similar al radar */
   --text: #e6eef6;
   --muted: #9aa4b2;
-  --accent: #c57aff; /* púrpura/acento */
-  --accent-glow: rgba(197,122,255,0.95);
+  --accent: #b700ff; /* magenta (morado claro)/acento */
+  --accent-glow: rgba(183,0,255,0.95);
 }
 *{box-sizing:border-box}
-html,body{height:100%}
+html,body{height:auto;overflow-x:hidden}
 body{
   margin:0;
   font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
@@ -836,15 +836,11 @@ h2{margin-top:0}
 .hero-inner{padding:3rem 1rem}
 .hero-left{display:flex;justify-content:center;align-items:center}
 
-/* ENTRADA ANIMACIONES */
-.fade-in{opacity:0;transform:translateY(12px);animation:fadeInUp .7s forwards}
-.fade-in.delay-1{animation-delay:.15s}
-.fade-in.delay-2{animation-delay:.3s}
-.fade-in.delay-3{animation-delay:.45s}
-
-@keyframes fadeInUp{
-  to{opacity:1;transform:none}
-}
+/* ENTRADA ANIMACIONES - DESHABILITADAS */
+.fade-in{opacity:1;transform:none;animation:none}
+.fade-in.delay-1{animation-delay:0}
+.fade-in.delay-2{animation-delay:0}
+.fade-in.delay-3{animation-delay:0}
 
 /* BOTONES HOVER NEON */
 .actions button{border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--text);padding:.5rem .9rem;border-radius:999px}
@@ -1577,123 +1573,123 @@ h2{margin-top:0}
   }
 }
 
-/* Aplicar animaciones a las secciones */
+/* Animaciones de entrada DESHABILITADAS */
 #educacion {
-  animation: slideInLeft 0.8s ease-out 0.1s both;
+  animation: none;
 }
 
 #proyectos {
-  animation: slideInRight 0.8s ease-out 0.2s both;
+  animation: none;
 }
 
 #habilidades {
-  animation: scaleIn 0.8s ease-out 0.3s both;
+  animation: none;
 }
 
 #certificados {
-  animation: rotateIn 0.8s ease-out 0.4s both;
+  animation: none;
 }
 
 #contacto {
-  animation: bounceIn 0.8s ease-out 0.5s both;
+  animation: none;
 }
 
-/* Animación para tarjetas de entrenamiento */
+/* Animación para tarjetas de entrenamiento - DESHABILITADA */
 .training-card {
-  animation: fadeInUp 0.6s ease-out;
+  animation: none;
 }
 
 .training-card:nth-child(2) {
-  animation-delay: 0.1s;
+  animation-delay: 0;
 }
 
 .training-card:nth-child(3) {
-  animation-delay: 0.2s;
+  animation-delay: 0;
 }
 
 .training-card:nth-child(4) {
-  animation-delay: 0.3s;
+  animation-delay: 0;
 }
 
 .training-card:nth-child(5) {
-  animation-delay: 0.4s;
+  animation-delay: 0;
 }
 
 .training-card:nth-child(6) {
-  animation-delay: 0.5s;
+  animation-delay: 0;
 }
 
-/* Animación para tarjetas de proyectos/carousel */
+/* Animación para tarjetas de proyectos/carousel - DESHABILITADA */
 .carousel-3d-card {
-  animation: fadeInUp 0.6s ease-out;
+  animation: none;
 }
 
 .carousel-3d-card:nth-child(2) {
-  animation-delay: 0.1s;
+  animation-delay: 0;
 }
 
 .carousel-3d-card:nth-child(3) {
-  animation-delay: 0.2s;
+  animation-delay: 0;
 }
 
 .carousel-3d-card:nth-child(4) {
-  animation-delay: 0.3s;
+  animation-delay: 0;
 }
 
 .carousel-3d-card:nth-child(5) {
-  animation-delay: 0.4s;
+  animation-delay: 0;
 }
 
 .carousel-3d-card:nth-child(6) {
-  animation-delay: 0.5s;
+  animation-delay: 0;
 }
 
 .carousel-3d-card:nth-child(7) {
-  animation-delay: 0.6s;
+  animation-delay: 0;
 }
 
-/* Animación para habilidades */
+/* Animación para habilidades - DESHABILITADA */
 .rune-skill {
-  animation: scaleIn 0.6s ease-out;
+  animation: none;
 }
 
-.rune-skill:nth-child(1) { animation-delay: 0.1s; }
-.rune-skill:nth-child(2) { animation-delay: 0.15s; }
-.rune-skill:nth-child(3) { animation-delay: 0.2s; }
-.rune-skill:nth-child(4) { animation-delay: 0.25s; }
-.rune-skill:nth-child(5) { animation-delay: 0.3s; }
-.rune-skill:nth-child(6) { animation-delay: 0.35s; }
-.rune-skill:nth-child(7) { animation-delay: 0.4s; }
-.rune-skill:nth-child(8) { animation-delay: 0.45s; }
-.rune-skill:nth-child(9) { animation-delay: 0.5s; }
-.rune-skill:nth-child(10) { animation-delay: 0.55s; }
+.rune-skill:nth-child(1) { animation-delay: 0; }
+.rune-skill:nth-child(2) { animation-delay: 0; }
+.rune-skill:nth-child(3) { animation-delay: 0; }
+.rune-skill:nth-child(4) { animation-delay: 0; }
+.rune-skill:nth-child(5) { animation-delay: 0; }
+.rune-skill:nth-child(6) { animation-delay: 0; }
+.rune-skill:nth-child(7) { animation-delay: 0; }
+.rune-skill:nth-child(8) { animation-delay: 0; }
+.rune-skill:nth-child(9) { animation-delay: 0; }
+.rune-skill:nth-child(10) { animation-delay: 0; }
 
-/* Animación para certificados */
+/* Animación para certificados - DESHABILITADA */
 .certificate-card {
-  animation: rotateIn 0.6s ease-out;
+  animation: none;
 }
 
 .certificate-card:nth-child(2) {
-  animation-delay: 0.1s;
+  animation-delay: 0;
 }
 
 .certificate-card:nth-child(3) {
-  animation-delay: 0.2s;
+  animation-delay: 0;
 }
 
-/* Animación para esferas de contacto */
+/* Animación para esferas de contacto - DESHABILITADA */
 .sphere-container {
-  animation: bounceIn 0.6s ease-out;
+  animation: none;
 }
 
-.sphere-container:nth-child(1) { animation-delay: 0.1s; }
-.sphere-container:nth-child(2) { animation-delay: 0.2s; }
-.sphere-container:nth-child(3) { animation-delay: 0.3s; }
-.sphere-container:nth-child(4) { animation-delay: 0.4s; }
-.sphere-container:nth-child(5) { animation-delay: 0.5s; }
-.sphere-container:nth-child(6) { animation-delay: 0.6s; }
-.sphere-container:nth-child(7) { animation-delay: 0.7s; }
-.sphere-container:nth-child(8) { animation-delay: 0.8s; }
+.sphere-container:nth-child(1) { animation-delay: 0; }
+.sphere-container:nth-child(2) { animation-delay: 0; }
+.sphere-container:nth-child(3) { animation-delay: 0; }
+.sphere-container:nth-child(4) { animation-delay: 0; }
+.sphere-container:nth-child(5) { animation-delay: 0; }
+.sphere-container:nth-child(6) { animation-delay: 0; }
+.sphere-container:nth-child(7) { animation-delay: 0; }
+.sphere-container:nth-child(8) { animation-delay: 0; }
 
 /* ================================
    RESPONSIVE DESIGN - MÓVILES
@@ -2011,5 +2007,33 @@ h2{margin-top:0}
   .main-grid {
     padding: 0.75rem;
   }
+
+  /* DESHABILITAR ANIMACIONES DE ENTRADA EN MÓVIL */
+  .training-card {
+    animation: none !important;
+  }
+
+  .carousel-3d-card {
+    animation: none !important;
+  }
+
+  .rune-skill {
+    animation: none !important;
+  }
+
+  .certificate-card {
+    animation: none !important;
+  }
+
+  .sphere-container {
+    animation: none !important;
+  }
+
+  /* Remover delays de animación */
+  .training-card:nth-child(n) { animation-delay: 0 !important; }
+  .carousel-3d-card:nth-child(n) { animation-delay: 0 !important; }
+  .rune-skill:nth-child(n) { animation-delay: 0 !important; }
+  .certificate-card:nth-child(n) { animation-delay: 0 !important; }
+  .sphere-container:nth-child(n) { animation-delay: 0 !important; }
 }
 
