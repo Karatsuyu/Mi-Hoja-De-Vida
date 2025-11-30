@@ -1179,7 +1179,12 @@ h2{margin-top:0}
 /* Responsive */
 @media (max-width: 768px) {
   .hanging-spheres-container {
-    height: 350px;
+    height: 450px;
+  }
+  
+  .contact-section {
+    padding: 4rem 1rem;
+    min-height: 600px;
   }
   
   .sphere {
@@ -1209,6 +1214,15 @@ h2{margin-top:0}
 @media (max-width: 480px) {
   .hanging-spheres {
     padding: 0 1rem;
+  }
+  
+  .hanging-spheres-container {
+    height: 500px;
+  }
+  
+  .contact-section {
+    padding: 4rem 1rem;
+    min-height: 650px;
   }
   
   .sphere-container {
@@ -2035,5 +2049,151 @@ h2{margin-top:0}
   .rune-skill:nth-child(n) { animation-delay: 0 !important; }
   .certificate-card:nth-child(n) { animation-delay: 0 !important; }
   .sphere-container:nth-child(n) { animation-delay: 0 !important; }
+}
+
+
+/* ===========================
+   📱 Ajustes Responsive Globales
+   =========================== */
+
+/* ----- Ajustes para tablets ----- */
+@media (max-width: 992px) {
+
+  .hero-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding-top: 2rem;
+  }
+
+  .hero-right {
+    padding: 0 1rem;
+  }
+
+  .nav-links {
+    gap: 0.7rem;
+    font-size: 0.85rem;
+  }
+
+  .radar-container {
+    width: 380px;
+    height: 380px;
+  }
+
+  .center-circle {
+    width: 240px;
+    height: 240px;
+  }
+}
+
+/* ----- Ajustes para móviles grandes ----- */
+@media (max-width: 768px) {
+
+  /* Menú más compacto */
+  .top-nav .nav-inner {
+    padding: 0.5rem;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    padding-top: 0.5rem;
+  }
+
+  /* Hero */
+  .hero-title {
+    font-size: 1.8rem;
+  }
+
+  .hero-sub {
+    font-size: 1.2rem;
+  }
+
+  .hero-text {
+    margin: 0 auto;
+    max-width: 90%;
+    font-size: 0.9rem;
+  }
+
+  /* Radar */
+  .radar-container {
+    width: 300px;
+    height: 300px;
+  }
+
+  .center-circle {
+    width: 200px;
+    height: 200px;
+  }
+
+  .outer-rune-circle .runes span {
+    font-size: 20px;
+  }
+
+  /* Cards de formación */
+  .training-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ----- Ajustes para móviles pequeños ----- */
+@media (max-width: 540px) {
+
+  body {
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 0.5rem;
+  }
+
+  /* Hero */
+  .hero-inner {
+    padding-top: 1rem;
+  }
+
+  .hero-title {
+    font-size: 1.55rem;
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+  }
+
+  /* Radar */
+  .radar-container {
+    width: 240px !important;
+    height: 240px !important;
+  }
+
+  .center-circle {
+    width: 160px !important;
+    height: 160px !important;
+  }
+
+  /* Formación → una columna */
+  .training-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Carrusel 3D reducido */
+  .carousel-3d-container {
+    height: 200px;
+    padding: 0;
+    transform: scale(0.85);
+  }
+
+  .carousel-3d-card {
+    width: 150px;
+    height: 180px;
+    transform: translateX(-50%) translateY(-50%) rotateY(calc(var(--index) * 45deg)) translateZ(200px);
+  }
+
+  .card-thumb {
+    height: 55px;
+  }
 }
 
