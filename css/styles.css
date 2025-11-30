@@ -936,6 +936,11 @@ body[data-theme="light"] .social-links a:hover {
   animation-delay: 0.6s;
 }
 
+/* Botón hamburguesa oculto en PC, visible solo en móvil */
+.mobile-menu-btn {
+  display: none;
+}
+
 /* ================================
    RESPONSIVE DESIGN - MÓVILES
    ================================ */
@@ -973,7 +978,7 @@ body[data-theme="light"] .social-links a:hover {
     display: block;
     position: fixed;
     top: 20px;
-    left: 20px;
+    right: 20px;
     z-index: 999;
     background: var(--primary);
     border: none;
@@ -1134,7 +1139,7 @@ body[data-theme="light"] .social-links a:hover {
     height: 45px;
     font-size: 1.3rem;
     top: 15px;
-    left: 15px;
+    right: 15px;
   }
 }
 
