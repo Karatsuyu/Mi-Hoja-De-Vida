@@ -3,12 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tu Nombre - Proyectos</title>
+  <title>Julián Gutierrez - Proyectos</title>
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Botón hamburguesa para móviles -->
+  
+
   <aside class="sidebar">
     <div class="profile">
       <img src="/images/1756766660817.png" alt="Foto de perfil" />
@@ -28,6 +31,15 @@
             <i class="fas fa-sun icon"></i><span class="text">Modo Día</span>
           </button>
         </li>
+        <li style="position: relative;">
+          <button class="nav-link" id="styleToggleBtn" style="width:100%; background:none; border:none; cursor:pointer; display:flex; align-items:center; gap:10px;">
+            <i class="fas fa-palette icon"></i><span class="text" style="position:relative;">Estilo
+              <div id="styleDropdown" class="style-dropdown-menu" style="display:none; position:absolute; left:0; top:100%; background:rgba(30,41,59,0.95); border:1px solid rgba(255,0,153,0.2); border-radius:8px; margin-top:5px; min-width:150px; z-index:100; box-shadow:0 10px 30px rgba(0,0,0,0.3); white-space:nowrap;">
+                <a href="../Hoja de vida Segundo Estilo/index.html" class="style-dropdown-item" style="display:block; padding:10px 15px; color:#ffffff; text-decoration:none;">Neon</a>
+              </div>
+            </span>
+          </button>
+        </li>
       </ul>
     </nav>
   </aside>
@@ -36,31 +48,144 @@
     <section class="section">
       <h2>Proyectos</h2>
       <div class="project-grid">
+        <!--||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-->
+
         <div class="project-card">
-          <img class="project-image" src="images/screenshots-proyectos/taskflow.jpg" alt="Captura del proyecto Gestor de Tareas TaskFlow" />
-          <h3>Gestor de Tareas (TaskFlow)</h3>
-          <p>Aplicación web para gestión personal de tareas con autenticación y persistencia.</p>
-          <p><strong>Tecnologías:</strong> React, Node.js, Express, MongoDB, JWT</p>
-          <p><strong>Mi rol:</strong> Desarrollo frontend y backend, diseño de API REST, pruebas unitarias.</p>
-          <p><strong>Retos:</strong> Implementación de autenticación segura y sincronización en tiempo real.</p>
+          <video class="project-video" autoplay muted loop playsinline>
+            <source src="videos/2025-10-13 17-20-25.mp4" type="video/mp4">
+            Tu navegador no soporta videos.
+          </video>
+          <h3>Tienda Online (E‑commerce full‑stack)</h3>
+          <p>Plataforma web para explorar productos, ver detalles y realizar compras.(Carrito, autenticación, etc)</p>
+          <br>
+          <p class="titilo-descripcion-proyectos"><strong>Tecnologías:</strong></p>
+          <p>Next.js 15 (App Router), React 19, Tailwind CSS 3.4, FastAPI, Uvicorn, SQLAlchemy 2, Alembic (migraciones), Docker Compose</p>
+          <br>
+          <p class="titilo-descripcion-proyectos"><strong>Mi rol:</strong></p>
+          <p>End‑to‑end: definición de producto, UX/UI, desarrollo frontend y backend, modelado de datos y migraciones, integración de servicios (DB/Redis/ES), contenedores y entornos, pruebas y despliegue.</p>
+          <br>
+          <p class="titilo-descripcion-proyectos"><strong>Retos:</strong></p>
+          <p>Flujo completo de compra: catálogo, búsqueda/filtrado, PDP, carrito, checkout y órdenes.</p>
           <a href="https://github.com/tuusuario/taskflow" target="_blank" class="btn">Ver en GitHub</a>
         </div>
+        <!--||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-->
+
         <div class="project-card">
-          <img class="project-image" src="images/screenshots-proyectos/univalle-sga.jpg" alt="Captura del proyecto Sistema de Gestión Académica" />
-          <h3>Sistema de Gestión Académica (UniValle)</h3>
-          <p>Proyecto universitario para administrar estudiantes, cursos y calificaciones.</p>
-          <p><strong>Tecnologías:</strong> Java, Spring Boot, PostgreSQL, Thymeleaf</p>
-          <p><strong>Mi rol:</strong> Modelado de base de datos, capa de servicio, pruebas de integración.</p>
-          <p><strong>Retos:</strong> Normalización de datos y manejo de transacciones ACID.</p>
-          <a href="https://github.com/tuusuario/sistema-academico" target="_blank" class="btn">Ver en GitHub</a>
+          <video class="project-video" autoplay muted loop playsinline>
+            <source src="videos/2025-10-23 17-08-3.mp4" type="video/mp4">
+            Tu navegador no soporta videos.
+          </video>
+          <h3>SaaS Full-Stack de Gestión Empresarial de Parqueaderos (ParkingPro)</h3>
+          <p>Plataforma SaaS empresarial completa para gestionar parqueaderos con control en tiempo real de entrada/salida, facturación automática con múltiples tarifas, reservas online y dashboard analytics con WebSockets.</p>
+          <br>
+          <p class="titilo-descripcion-proyectos"><strong>Tecnologías:</strong></p>
+          <p>Node.js 18 + Express, PostgreSQL 15, Redis 7, Socket.IO, JWT, bcrypt. React 18 + TypeScript, TailwindCSS, Zustand, React Query, Recharts(Vite, Docker)</p>
+          <br>
+          <p class="titilo-descripcion-proyectos"><strong>Mi rol:</strong></p>
+          <p>full-stack developer y architect responsable de: Diseño y arquitectura del sistema completo (15+ tablas DB, 50+ endpoints), Backend API empresarial con 7 servicios principales,  Frontend moderno con 10+ páginas planificadas</p>
+          <br>
+          <p class="titilo-descripcion-proyectos"><strong>Retos:</strong></p>
+          <p>Flujo completo de compra: catálogo, búsqueda/filtrado, PDP, carrito, checkout y órdenes.</p>
+          <a href="https://github.com/tuusuario/taskflow" target="_blank" class="btn">Ver en GitHub</a>
         </div>
+        <!--||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-->
+
         <div class="project-card">
-          <img class="project-image" src="images/screenshots-proyectos/portfolio.jpg" alt="Captura del proyecto Portafolio Personal" />
-          <h3>Portafolio Personal</h3>
-          <p>Sitio web responsivo para presentar hoja de vida, habilidades y proyectos con tema claro/oscuro.</p>
-          <p><strong>Tecnologías:</strong> HTML, CSS, JavaScript</p>
-          <p><strong>Mi rol:</strong> Diseño UI/UX, maquetación responsiva, interacciones JS.</p>
-          <p><strong>Retos:</strong> Accesibilidad, animaciones suaves y rendimiento.</p>
+          <video class="project-video" autoplay muted loop playsinline>
+            <source src="videos/2025-10-23 17-08-31.mp4" type="video/mp4">
+            Tu navegador no soporta videos.
+          </video>
+          <h3>SaaS Full-Stack de Gestión Empresarial de Parqueaderos (ParkingPro)</h3>
+          <p>Plataforma SaaS empresarial completa para gestionar parqueaderos con control en tiempo real de entrada/salida, facturación automática con múltiples tarifas, reservas online y dashboard analytics con WebSockets.</p>
+          <br>
+          <p class="titilo-descripcion-proyectos"><strong>Tecnologías:</strong></p>
+          <p>Node.js 18 + Express, PostgreSQL 15, Redis 7, Socket.IO, JWT, bcrypt. React 18 + TypeScript, TailwindCSS, Zustand, React Query, Recharts(Vite, Docker)</p>
+          <br>
+          <p class="titilo-descripcion-proyectos"><strong>Mi rol:</strong></p>
+          <p>full-stack developer y architect responsable de: Diseño y arquitectura del sistema completo (15+ tablas DB, 50+ endpoints), Backend API empresarial con 7 servicios principales,  Frontend moderno con 10+ páginas planificadas</p>
+          <br>
+          <p class="titilo-descripcion-proyectos"><strong>Retos:</strong></p>
+          <p>Flujo completo de compra: catálogo, búsqueda/filtrado, PDP, carrito, checkout y órdenes.</p>
+          <a href="https://github.com/tuusuario/taskflow" target="_blank" class="btn">Ver en GitHub</a>
+        </div>
+        <!--||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-->
+
+        <div class="project-card">
+          <video class="project-video" autoplay muted loop playsinline>
+            <source src="videos/2025-10-21 09-59-56.mp4" type="video/mp4">
+            Tu navegador no soporta videos.
+          </video>
+          <h3>Aplicación de gestión registral (Sistema de Información de Registro de Personas / Registraduría electrónica).</h3>
+          <p>Sistema web full-stack para gestionar personas, documentos y generar reportes estadísticos</p>
+          <br>
+          <p class="titilo-descripcion-proyectos"><strong>Tecnologías:</strong></p>
+          <p>Node.js + Express, PostgreSQL (pg), estructura MVC (models/controllers/routes). React (Vite), JSX, fetch/axios via servicios (API client).</p>
+          <br>
+          <p class="titilo-descripcion-proyectos"><strong>Mi rol:</strong></p>
+          <p> Desarrollador full-stack único: diseño de esquema DB, implementación backend y frontend, insercion de datos y pruebas locales</p>
+          <br>
+          <p class="titilo-descripcion-proyectos"><strong>Retos:</strong></p>
+          <p> Registrar y mantener datos de personas y documentos con integridad y búsquedas. Generar reportes y estadísticas útiles (por tipo de documento, por departamento, por sexo).</p>
+          <a href="https://github.com/tuusuario/mi-portafolio" target="_blank" class="btn">Ver en GitHub</a>
+        </div>
+        <!--||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-->
+
+        <div class="project-card">
+          <video class="project-video" autoplay muted loop playsinline>
+            <source src="videos/2025-10-23 18-00-50.mp4" type="video/mp4">
+            Tu navegador no soporta videos.
+          </video>
+          <h3>Portfolio / Portafolio Profesional Web Full-Stack con Modo Oscuro/Claro</h3>
+          <p>Sitio web responsive que actúa como CV interactivo con sidebar colapsable, showcasing de 7 proyectos full-stack (con videos autoplay), panel de habilidades técnicas con tarjetas flip animadas, secciones de formación y certificados. Incluye tema claro/oscuro con transición circular animada, modal lightbox, y animaciones suaves en scroll/hover.</p>
+          <br>
+          <p class="titilo-descripcion-proyectos"><strong>Tecnologías:</strong></p>
+          <p>HTML5, CSS3, JavaScript Vanilla, Font Awesome Icons, Google Fonts (Inter), Fetch API, Responsive (Mobile/Tablet/Desktop), Flexbox, CSS Grid, CSS Variables, Gradientes lineales</p>
+          <br>
+          <p class="titilo-descripcion-proyectos"><strong>Mi rol:</strong></p>
+          <p> Diseño de estructura HTML multi-página, sistema de componentes CSS reutilizables (cards, grids, flip-cards). Maquetación responsiva, animaciones interactivas, modo día/noche con persistencia, accesibilidad. Backend: No aplica (es estático)</p>
+          <br>
+          <p class="titilo-descripcion-proyectos"><strong>Retos:</strong></p>
+          <p> Permitir CRUD completo de clientes y servicios vía API REST, por medio de una interfaz gráfica intuitiva en Tkinter.</p>
+          <a href="https://github.com/tuusuario/mi-portafolio" target="_blank" class="btn">Ver en GitHub</a>
+        </div>
+        <!--||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-->
+
+        <div class="project-card">
+          <video class="project-video" autoplay muted loop playsinline>
+            <source src="videos/1014 (1)(1).mp4" type="video/mp4">
+            Tu navegador no soporta videos.
+          </video>
+          <h3>Aplicación cliente-servidor de gestión para una empresa de lavado de autos</h3>
+          <p>Aplicación para gestionar clientes y servicios: el backend expone endpoints REST para crear/leer/actualizar/eliminar clientes y servicios. El frontend es una aplicación de escritorio en Tkinter que consume la API local para operaciones CRUD. Usa SQLite como almacenamiento local en el servidor.</p>
+          <br>
+          <p class="titilo-descripcion-proyectos"><strong>Tecnologías:</strong></p>
+          <p>Django 5.x, Django REST Framework, sqlite3, django-cors-headers, Python Tkinter (GUI), requests para consumir la API, threading para operaciones en segundo plano.</p>
+          <br>
+          <p class="titilo-descripcion-proyectos"><strong>Mi rol:</strong></p>
+          <p> Diseñador de parte del frontend en Tkinter, responsable de la implementación de la interfaz gráfica y la lógica de consumo de la API y parte del backend REST</p>
+          <br>
+          <p class="titilo-descripcion-proyectos"><strong>Retos:</strong></p>
+          <p> Permitir CRUD completo de clientes y servicios vía API REST, por medio de una interfaz gráfica intuitiva en Tkinter.</p>
+          <a href="https://github.com/tuusuario/mi-portafolio" target="_blank" class="btn">Ver en GitHub</a>
+        </div>
+        <!--||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-->
+
+        <div class="project-card">
+          <video class="project-video" autoplay muted loop playsinline>
+            <source src="videos/1014 (1).mp4" type="video/mp4">
+            Tu navegador no soporta videos.
+          </video>
+          <h3>Sistema de Gestión Bancaria de Corresponsal</h3>
+          <p>Sistema bancario desktop que permite a un corresponsal gestionar clientes, cuentas y transacciones (depósitos/retiros).</p>
+          <br>
+          <p class="titilo-descripcion-proyectos"><strong>Tecnologías:</strong></p>
+          <p>Python puro (Python 3.x),  Tkinter (interfaz gráfica nativa), Archivos de texto plano (.txt) con serialización manual, Programación Orientada a Objetos (POO) con herencia</p>
+          <br>
+          <p class="titilo-descripcion-proyectos"><strong>Mi rol:</strong></p>
+          <p> Desarrollador Full-Stack único - Responsable del diseño completo de arquitectura, implementación de modelo de datos (10+ clases con herencia), lógica de negocio, persistencia custom, interfaz gráfica multi-ventana, y sistema de autenticación.</p>
+          <br>
+          <p class="titilo-descripcion-proyectos"><strong>Retos:</strong></p>
+          <p> Gestionar operaciones bancarias básicas (clientes, cuentas, transacciones)</p>
           <a href="https://github.com/tuusuario/mi-portafolio" target="_blank" class="btn">Ver en GitHub</a>
         </div>
       </div>

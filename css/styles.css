@@ -7,7 +7,7 @@
 }
 
 :root {
-  --primary: #ff0099;
+  --primary: #ff0095;
   --dark: #1e293b;
   --light: #f8fafc;
   --gray: #64748b;
@@ -18,7 +18,7 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background: linear-gradient(to bottom,#000 50%, #ff0099);
+  background: linear-gradient(to bottom, #000 50%, #ff0095);
   color: var(--dark);
   display: flex;
   min-height: 100vh;
@@ -116,7 +116,7 @@ body {
 }
 
 .nav-link:hover {
-  background-color: rgba(255, 0, 153, 0.15);
+  background-color: rgba(255, 0, 149, 0.15);
   color: var(--primary);
   border-radius: 8px;
 }
@@ -243,6 +243,16 @@ body {
   display: block;
   
 }
+.project-card .project-video {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid var(--primary);
+  margin-bottom: 12px;
+  display: block;
+  background-color: #000; /* fallback mientras carga */
+}
 .project-image{
   overflow: hidden;
   scrollbar-width: none; /* Firefox */
@@ -256,6 +266,23 @@ body {
 #fondo-certificado{
   background-color: #000000;
 }
+
+/*-----------------------------------------------------------------------------------------------*/
+.titilo-descripcion-proyectos{
+  padding-bottom: 10px;
+  text-decoration: underline;
+  color: var(--primary);
+}
+
+
+
+
+
+
+
+
+
+
 
 /* Contenedor para vista previa de PDF personalizada en certificados */
 .pdf-preview-container {
@@ -357,7 +384,7 @@ body {
   display: block;
   border-radius: 8px;
   border: 3px solid var(--primary);
-  box-shadow: 0 0 20px rgba(255, 0, 153, 0.3);
+  box-shadow: 0 0 20px rgba(255, 0, 149, 0.3);
 }
 
 .project-grid {
@@ -774,4 +801,340 @@ body[data-theme="light"] .social-links a:hover {
   text-align: center;
 }
 
+/* ================================
+   Animaciones de Entrada Modernas
+   ================================ */
+
+/* Animación 1: Fade In Up - Para la sección principal */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animación 2: Slide In Left - Para Formación */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animación 3: Slide In Right - Para Proyectos */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animación 4: Scale In - Para Habilidades */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Animación 5: Rotate In - Para Certificados */
+@keyframes rotateIn {
+  from {
+    opacity: 0;
+    transform: rotate(-5deg) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+/* Animación 6: Bounce In - Para Contacto */
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.85) translateY(20px);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Aplicar animaciones a las secciones */
+.section:nth-of-type(1) {
+  animation: fadeInUp 0.8s ease-out 0.1s both;
+}
+
+.section:nth-of-type(2) {
+  animation: slideInLeft 0.8s ease-out 0.2s both;
+}
+
+.section:nth-of-type(3) {
+  animation: slideInRight 0.8s ease-out 0.3s both;
+}
+
+.section:nth-of-type(4) {
+  animation: scaleIn 0.8s ease-out 0.4s both;
+}
+
+.section:nth-of-type(5) {
+  animation: rotateIn 0.8s ease-out 0.5s both;
+}
+
+.section:nth-of-type(6) {
+  animation: bounceIn 0.8s ease-out 0.6s both;
+}
+
+/* Animación adicional para tarjetas dentro de secciones */
+.project-card,
+.card {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.project-card:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.project-card:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.project-card:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.project-card:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+.project-card:nth-child(6) {
+  animation-delay: 0.5s;
+}
+
+.project-card:nth-child(7) {
+  animation-delay: 0.6s;
+}
+
+/* ================================
+   RESPONSIVE DESIGN - MÓVILES
+   ================================ */
+
+@media (max-width: 768px) {
+  :root {
+    --sidebar-width: 0;
+    --sidebar-expanded: 280px;
+  }
+
+  /* Sidebar oculto por defecto en móviles */
+  .sidebar {
+    width: 0;
+    left: 0;
+    right: auto;
+    overflow: hidden;
+    box-shadow: none;
+    background: rgba(0, 0, 0, 0.8);
+    transition: width 0.3s ease;
+    z-index: 1000;
+  }
+
+  /* Sidebar visible cuando tiene clase active */
+  .sidebar.mobile-open {
+    width: var(--sidebar-expanded);
+  }
+
+  .sidebar:hover {
+    width: var(--sidebar-width);
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  /* Botón hamburguesa visible en móviles */
+  .mobile-menu-btn {
+    display: block;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 999;
+    background: var(--primary);
+    border: none;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 0, 153, 0.3);
+  }
+
+  .mobile-menu-btn:active {
+    transform: scale(0.95);
+  }
+
+  /* Main content ajustado */
+  .main-content {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 20px 15px;
+  }
+
+  /* Secciones responsivas */
+  .section {
+    padding: 20px 15px;
+    margin-bottom: 20px;
+  }
+
+  .section h1 {
+    font-size: 1.5rem;
+  }
+
+  .section h2 {
+    font-size: 1.25rem;
+  }
+
+  .section p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  /* Grid de proyectos responsivo */
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  /* Tarjetas de proyecto optimizadas */
+  .project-card {
+    padding: 15px;
+  }
+
+  .project-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .project-card p {
+    font-size: 0.9rem;
+  }
+
+  .project-card .btn {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+
+  /* Video responsivo */
+  .project-video {
+    max-height: 200px;
+  }
+
+  /* Grid de habilidades responsivo */
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .skill {
+    padding: 15px;
+  }
+
+  .skill i {
+    font-size: 2rem;
+  }
+
+  .skill span {
+    font-size: 0.9rem;
+  }
+
+  /* Cards responsivas */
+  .card {
+    padding: 15px;
+  }
+
+  .card h3 {
+    font-size: 1.1rem;
+  }
+
+  /* Social links responsivos */
+  .social-links {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .social-links a {
+    padding: 12px 20px;
+    font-size: 0.95rem;
+  }
+
+  /* Tema light responsivo */
+  body[data-theme="light"] .sidebar {
+    background: rgba(255, 255, 255, 0.95);
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --sidebar-expanded: 250px;
+  }
+
+  /* Sidebar más estrecho en pantallas muy pequeñas */
+  .sidebar.mobile-open {
+    width: var(--sidebar-expanded);
+  }
+
+  .main-content {
+    padding: 15px 10px;
+  }
+
+  .section {
+    padding: 15px 10px;
+  }
+
+  .section h1 {
+    font-size: 1.3rem;
+  }
+
+  .section h2 {
+    font-size: 1.1rem;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skill i {
+    font-size: 1.8rem;
+  }
+
+  /* Botón hamburguesa ajustado */
+  .mobile-menu-btn {
+    width: 45px;
+    height: 45px;
+    font-size: 1.3rem;
+    top: 15px;
+    left: 15px;
+  }
+}
 

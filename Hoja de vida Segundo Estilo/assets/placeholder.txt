@@ -1,0 +1,1 @@
+Carpeta para recursos (imágenes, PDF, certificados). Reemplaza este archivo con tus archivos reales.

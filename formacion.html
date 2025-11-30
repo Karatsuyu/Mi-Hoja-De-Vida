@@ -3,12 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tu Nombre - Formación</title>
+  <title>Julián Gutierrez - Formación</title>
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Botón hamburguesa para móviles -->
+  
+
   <aside class="sidebar">
     <div class="profile">
       <img src="/images/1756766660817.png" alt="Foto de perfil" />
@@ -28,6 +31,15 @@
             <i class="fas fa-sun icon"></i><span class="text">Modo Día</span>
           </button>
         </li>
+        <li style="position: relative;">
+          <button class="nav-link" id="styleToggleBtn" style="width:100%; background:none; border:none; cursor:pointer; display:flex; align-items:center; gap:10px;">
+            <i class="fas fa-palette icon"></i><span class="text" style="position:relative;">Estilo
+              <div id="styleDropdown" class="style-dropdown-menu" style="display:none; position:absolute; left:0; top:100%; background:rgba(30,41,59,0.95); border:1px solid rgba(255,0,153,0.2); border-radius:8px; margin-top:5px; min-width:150px; z-index:100; box-shadow:0 10px 30px rgba(0,0,0,0.3); white-space:nowrap;">
+                <a href="../Hoja de vida Segundo Estilo/index.html" class="style-dropdown-item" style="display:block; padding:10px 15px; color:#ffffff; text-decoration:none;">Neon</a>
+              </div>
+            </span>
+          </button>
+        </li>
       </ul>
     </nav>
   </aside>
@@ -37,8 +49,10 @@
       <h2>Formación Académica</h2>
       <div class="card">
         <h3>Tecnología en Desarrollo de Software</h3>
-        <p class="formacion-p"><strong>Universidad del Valle – Sede Caicedonia</strong></p>
-        <p class="formacion-p">Estado: 6° semestre (en curso) | Previsión de graduación: 2026</p>
+        <ul class="formacion-list">
+          <li class="formacion-p"><strong>Universidad del Valle – Sede Caicedonia</strong></li>
+          <li class="formacion-p">Estado: 6° semestre (en curso) | Previsión de graduación: 2026</li>
+        </ul>
         <br>
         <h3>Cursos relevantes:</h3>
         <ul>
