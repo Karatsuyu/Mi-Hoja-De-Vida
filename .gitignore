@@ -1,0 +1,17 @@
+# Archivos temporales
+temp_*.css
+
+# Videos (demasiado grandes para GitHub)
+videos/*.mp4
+
+# Node modules
+node_modules/
+
+# Dependencias
+.env
+.DS_Store
+
+# IDE
+.vscode/settings.json
+*.swp
+*.swo
