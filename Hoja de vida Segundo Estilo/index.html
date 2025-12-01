@@ -1,17 +1,27 @@
 <!doctype html>
 <html lang="es" data-theme="dark">
-  <head>
+
+<head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Hoja de vida — Nombre Apellido</title>
   <!-- Fuentes: Poppins para títulos y Inter para texto -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@300;400;600&display=swap"
+    rel="stylesheet">
+  <!-- Fuente para símbolos rúnicos (asegura visibilidad en móviles) -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Runic&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
   <header class="top hero">
     <nav class="top-nav">
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
       <div class="container nav-inner">
         <ul class="nav-links">
           <li><a href="#home" class="nav-link active">Home</a></li>
@@ -42,71 +52,78 @@
           </li>
         </ul>
       </div>
-  </nav>
+    </nav>
 
-  <!-- Nebulosa sutil bajo el menú fijo -->
-  <div class="menu-nebula" aria-hidden="true"></div>
+    <!-- Nebulosa sutil bajo el menú fijo -->
+    <div class="menu-nebula" aria-hidden="true"></div>
 
-  <div class="hero-inner container" id="home">
+    <div class="hero-inner container" id="home">
       <!-- Nebula background (home only) -->
       <div class="home-nebula" aria-hidden="true"></div>
       <div class="hero-left">
         <!-- Radar/imagen de perfil -->
         <div class="radar-container">
-            <div class="radar-glow"></div>
+          <div class="radar-glow"></div>
 
-            <svg class="radar-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-                <!-- Círculo exterior -->
-                <circle cx="250" cy="250" r="220" class="circle-outer"/>
+          <svg class="radar-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+            <!-- Círculo exterior -->
+            <circle cx="250" cy="250" r="220" class="circle-outer" />
 
-                <!-- Ticks exteriores (se llenan desde JS) -->
-                <g class="ticks"></g>
+            <!-- Ticks exteriores (se llenan desde JS) -->
+            <g class="ticks"></g>
 
-                <!-- Líneas radiales -->
-                <line x1="250" y1="40"  x2="250" y2="460" class="radial"/>
-                <line x1="40"  y1="250" x2="460" y2="250" class="radial"/>
-                <line x1="110" y1="110" x2="390" y2="390" class="radial"/>
-                <line x1="110" y1="390" x2="390" y2="110" class="radial"/>
-            </svg>
+            <!-- Líneas radiales -->
+            <line x1="250" y1="40" x2="250" y2="460" class="radial" />
+            <line x1="40" y1="250" x2="460" y2="250" class="radial" />
+            <line x1="110" y1="110" x2="390" y2="390" class="radial" />
+            <line x1="110" y1="390" x2="390" y2="110" class="radial" />
+          </svg>
 
-            <!-- CÍRCULO CENTRAL CON IMAGEN -->
-            <div class="center-circle">
-                <img src="assets/1756766660817.png" alt="Center Image" class="center-image">
+          <!-- CÍRCULO CENTRAL CON IMAGEN -->
+          <div class="center-circle">
+            <img src="assets/1756766660817.png" alt="Center Image" class="center-image">
+          </div>
+
+          <!-- CÍRCULO EXTERNO CON RUNAS ROTANDO -->
+          <div class="outer-rune-circle">
+            <div class="runes">
+              <span style="--i:0">ᚠ</span>
+              <span style="--i:1">ᚢ</span>
+              <span style="--i:2">ᚦ</span>
+              <span style="--i:3">ᚨ</span>
+              <span style="--i:4">ᚱ</span>
+              <span style="--i:5">ᚲ</span>
+              <span style="--i:6">ᚷ</span>
+              <span style="--i:7">ᚹ</span>
+              <span style="--i:8">ᚺ</span>
+              <span style="--i:9">ᚾ</span>
+              <span style="--i:10">ᛁ</span>
+              <span style="--i:11">ᛃ</span>
+              <span style="--i:12">ᛇ</span>
+              <span style="--i:13">ᛈ</span>
+              <span style="--i:14">ᛉ</span>
+              <span style="--i:15">ᛊ</span>
             </div>
+          </div>
 
-            <!-- CÍRCULO EXTERNO CON RUNAS ROTANDO -->
-            <div class="outer-rune-circle">
-                <div class="runes">
-                    <span style="--i:0">ᚠ</span>
-                    <span style="--i:1">ᚢ</span>
-                    <span style="--i:2">ᚦ</span>
-                    <span style="--i:3">ᚨ</span>
-                    <span style="--i:4">ᚱ</span>
-                    <span style="--i:5">ᚲ</span>
-                    <span style="--i:6">ᚷ</span>
-                    <span style="--i:7">ᚹ</span>
-                    <span style="--i:8">ᚺ</span>
-                    <span style="--i:9">ᚾ</span>
-                    <span style="--i:10">ᛁ</span>
-                    <span style="--i:11">ᛃ</span>
-                    <span style="--i:12">ᛇ</span>
-                    <span style="--i:13">ᛈ</span>
-                    <span style="--i:14">ᛉ</span>
-                    <span style="--i:15">ᛊ</span>
-                </div>
-            </div>
-
-            <!-- CÍRCULOS QUE ENMARCAN LAS RUNAS -->
-            <div class="outer-rune-border"></div>
+          <!-- CÍRCULOS QUE ENMARCAN LAS RUNAS -->
+          <div class="outer-rune-border"></div>
         </div>
       </div>
 
       <div class="hero-right">
         <h1 class="hero-title">Hola, soy <span class="accent">Julián Gutierrez</span></h1>
         <h2 class="hero-sub">Soy <span class="accent">Tecnologo en desarrollado de Software</span></h2>
-        <p class="hero-text"> Soy un Tecnólogo en Desarrollo de Software formado en la Universidad del Valle, apasionado por la tecnología, la innovación y la creación de soluciones digitales que generen impacto. Mi enfoque principal está orientado al desarrollo de software de calidad, la experiencia del usuario (UX/UI) y la aplicación de buenas prácticas en todo el ciclo de vida del desarrollo.</p>
-        
-        <p class="hero-text"> Durante mi formación, he adquirido conocimientos sólidos en programación estructurada y orientada a objetos, diseño de bases de datos, desarrollo web (frontend y backend), análisis de requerimientos, ingeniería de software y pruebas funcionales. Me interesa especialmente el diseño de interfaces intuitivas, la optimización del rendimiento de las aplicaciones y la integración de herramientas que mejoren la experiencia del usuario final.</p>
+        <p class="hero-text"> Soy un Tecnólogo en Desarrollo de Software formado en la Universidad del Valle, apasionado
+          por la tecnología, la innovación y la creación de soluciones digitales que generen impacto. Mi enfoque
+          principal está orientado al desarrollo de software de calidad, la experiencia del usuario (UX/UI) y la
+          aplicación de buenas prácticas en todo el ciclo de vida del desarrollo.</p>
+
+        <p class="hero-text"> Durante mi formación, he adquirido conocimientos sólidos en programación estructurada y
+          orientada a objetos, diseño de bases de datos, desarrollo web (frontend y backend), análisis de
+          requerimientos, ingeniería de software y pruebas funcionales. Me interesa especialmente el diseño de
+          interfaces intuitivas, la optimización del rendimiento de las aplicaciones y la integración de herramientas
+          que mejoren la experiencia del usuario final.</p>
 
         <div class="hero-actions">
         </div>
@@ -114,431 +131,464 @@
     </div>
   </header>
 
-    <main class="container main-grid">
-      <section id="educacion" class="section">
-        <h2>Formación</h2>
-        <div class="training-grid">
-          <div class="training-card">
-            <h3>Programación Orientada a Objetos</h3>
-            <p>Java, Python</p>
-          </div>
-          <div class="training-card">
-            <h3>Programación Orientada a Eventos</h3>
-            <p>Python</p>
-          </div>
-          <div class="training-card">
-            <h3>Desarrollo Web</h3>
-            <p>HTML, CSS, JavaScript, frameworks</p>
-          </div>
-          <div class="training-card">
-            <h3>Desarrollo de Aplicaciones Móviles</h3>
-            <p>React Native</p>
-          </div>
-          <div class="training-card">
-            <h3>Estructuras de Datos y Algoritmos</h3>
-            <p>Fundamentos y optimización</p>
-          </div>
-          <div class="training-card">
-            <h3>Bases de Datos</h3>
-            <p>SQL, diseño relacional</p>
-          </div>
-          <div class="training-card">
-            <h3>Ingeniería de Software</h3>
-            <p>Ciclo de vida, pruebas, documentación</p>
-          </div>
-          <div class="training-card">
-            <h3>Sistemas Operativos y Redes</h3>
-            <p>Conceptos de SO y redes</p>
-          </div>
-          <div class="training-card">
-            <h3>Diseño de Interfaces Humano-Computador</h3>
-            <p>Principios de diseño centrado en usuario</p>
-          </div>
+  <main class="container main-grid">
+    <section id="educacion" class="section">
+      <h2>Formación</h2>
+      <div class="training-grid">
+        <div class="training-card">
+          <h3>Programación Orientada a Objetos</h3>
+          <p>Java, Python</p>
         </div>
-      </section>
+        <div class="training-card">
+          <h3>Programación Orientada a Eventos</h3>
+          <p>Python</p>
+        </div>
+        <div class="training-card">
+          <h3>Desarrollo Web</h3>
+          <p>HTML, CSS, JavaScript, frameworks</p>
+        </div>
+        <div class="training-card">
+          <h3>Desarrollo de Aplicaciones Móviles</h3>
+          <p>React Native</p>
+        </div>
+        <div class="training-card">
+          <h3>Estructuras de Datos y Algoritmos</h3>
+          <p>Fundamentos y optimización</p>
+        </div>
+        <div class="training-card">
+          <h3>Bases de Datos</h3>
+          <p>SQL, diseño relacional</p>
+        </div>
+        <div class="training-card">
+          <h3>Ingeniería de Software</h3>
+          <p>Ciclo de vida, pruebas, documentación</p>
+        </div>
+        <div class="training-card">
+          <h3>Sistemas Operativos y Redes</h3>
+          <p>Conceptos de SO y redes</p>
+        </div>
+        <div class="training-card">
+          <h3>Diseño de Interfaces Humano-Computador</h3>
+          <p>Principios de diseño centrado en usuario</p>
+        </div>
+      </div>
+    </section>
 
-      <section id="proyectos" class="section">
-        <h2>Proyectos</h2>
-        <p>Proyectos destacados — arrastra para desplazarte y haz clic en una tarjeta para ver detalles.</p>
+    <section id="proyectos" class="section">
+      <h2>Proyectos</h2>
+      <p>Proyectos destacados — arrastra para desplazarte y haz clic en una tarjeta para ver detalles.</p>
 
-        <div class="carousel-3d-container">
-          <div class="carousel-3d-inner">
-            <!-- Proyecto 1 -->
-            <div class="carousel-3d-card" style="--index: 0">
-              <div class="card-content">
-                <div class="card-glow"></div>
-                <div class="card-inner">
-                  <div class="card-front">
-                    <video class="card-thumb" autoplay muted loop playsinline>
-                      <source src="../videos/2025-10-13 17-20-25.mp4" type="video/mp4">
-                    </video>
-                    <h3>Tienda Online (E-commerce Full-Stack)</h3>
-                    <p>Plataforma web para explorar productos, ver detalles y realizar compras.</p>
-                  </div>
-                  <div class="card-back">
-                    <h3>Tecnologías</h3>
-                    <p>Next.js 15, React 19, Tailwind CSS 3.4, FastAPI, SQLAlchemy 2, Docker Compose</p>
-                    <p><strong>Mi rol:</strong> End-to-end (producto, UX/UI, frontend/backend, datos, despliegue)</p>
-                    <p><strong>Reto:</strong> Flujo completo de compra: catálogo, búsqueda, carrito, checkout</p>
-                    <a href="https://github.com/tuusuario/taskflow" target="_blank" class="card-link">Ver en GitHub →</a>
-                  </div>
+      <div class="carousel-3d-container">
+        <div class="carousel-3d-inner">
+          <!-- Proyecto 1 -->
+          <div class="carousel-3d-card" style="--index: 0">
+            <div class="card-content">
+              <div class="card-glow"></div>
+              <div class="card-inner">
+                <div class="card-front">
+                  <video class="card-thumb" autoplay muted loop playsinline>
+                    <source src="../videos/2025-10-13 17-20-25.mp4" type="video/mp4">
+                  </video>
+                  <h3>Tienda Online (E-commerce Full-Stack)</h3>
+                  <p>Plataforma web para explorar productos, ver detalles y realizar compras.</p>
                 </div>
-              </div>
-            </div>
-
-            <!-- Proyecto 2 -->
-            <div class="carousel-3d-card" style="--index: 1">
-              <div class="card-content">
-                <div class="card-glow"></div>
-                <div class="card-inner">
-                  <div class="card-front">
-                    <video class="card-thumb" autoplay muted loop playsinline>
-                      <source src="../videos/2025-10-23 17-08-31.mp4" type="video/mp4">
-                    </video>
-                    <h3>ParkingPro SaaS - Gestión Empresarial de Parqueaderos</h3>
-                    <p>Plataforma SaaS con control en tiempo real, facturación automática y dashboard analytics.</p>
-                  </div>
-                  <div class="card-back">
-                    <h3>Tecnologías</h3>
-                    <p>Node.js 18, Express, PostgreSQL 15, Redis 7, Socket.IO, React 18, TypeScript, Docker</p>
-                    <p><strong>Mi rol:</strong> Full-stack architect (15+ tablas DB, 50+ endpoints, 7 servicios)</p>
-                    <p><strong>Reto:</strong> Sistema en tiempo real con WebSockets, múltiples tarifas y reservas</p>
-                    <a href="https://github.com/tuusuario/taskflow" target="_blank" class="card-link">Ver en GitHub →</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Proyecto 3 -->
-            <div class="carousel-3d-card" style="--index: 2">
-              <div class="card-content">
-                <div class="card-glow"></div>
-                <div class="card-inner">
-                  <div class="card-front">
-                    <video class="card-thumb" autoplay muted loop playsinline>
-                      <source src="../videos/2025-10-23 17-08-31.mp4" type="video/mp4">
-                    </video>
-                    <h3>Sistema de Gestión Registral - Registraduría Electrónica</h3>
-                    <p>Sistema web para gestionar personas, documentos y generar reportes estadísticos.</p>
-                  </div>
-                  <div class="card-back">
-                    <h3>Tecnologías</h3>
-                    <p>Node.js, Express, PostgreSQL, React (Vite), MVC Architecture, Axios</p>
-                    <p><strong>Mi rol:</strong> Desarrollador full-stack único (diseño DB, backend, frontend)</p>
-                    <p><strong>Reto:</strong> Gestionar datos con integridad, búsquedas y reportes por departamento/sexo/documento</p>
-                    <a href="https://github.com/tuusuario/mi-portafolio" target="_blank" class="card-link">Ver en GitHub →</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Proyecto 4 -->
-            <div class="carousel-3d-card" style="--index: 3">
-              <div class="card-content">
-                <div class="card-glow"></div>
-                <div class="card-inner">
-                  <div class="card-front">
-                    <video class="card-thumb" autoplay muted loop playsinline>
-                      <source src="../videos/2025-10-21 09-59-56.mp4" type="video/mp4">
-                    </video>
-                    <h3>Portfolio Profesional Web Full-Stack</h3>
-                    <p>Sitio web responsive con sidebar colapsable, 7 proyectos, animaciones y modo oscuro/claro.</p>
-                  </div>
-                  <div class="card-back">
-                    <h3>Tecnologías</h3>
-                    <p>HTML5, CSS3, JavaScript Vanilla, Font Awesome, Google Fonts, Responsive Design, Flexbox, CSS Grid</p>
-                    <p><strong>Mi rol:</strong> Diseño HTML multi-página, componentes CSS reutilizables, animaciones interactivas</p>
-                    <p><strong>Reto:</strong> Maquetación responsiva, tema día/noche con persistencia, accesibilidad</p>
-                    <a href="https://github.com/tuusuario/mi-portafolio" target="_blank" class="card-link">Ver en GitHub →</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Proyecto 5 -->
-            <div class="carousel-3d-card" style="--index: 4">
-              <div class="card-content">
-                <div class="card-glow"></div>
-                <div class="card-inner">
-                  <div class="card-front">
-                    <video class="card-thumb" autoplay muted loop playsinline>
-                      <source src="../videos/2025-10-23 18-00-50.mp4" type="video/mp4">
-                    </video>
-                    <h3>Aplicación Cliente-Servidor de Gestión de Lavadero</h3>
-                    <p>App para gestionar clientes y servicios: Backend REST + Frontend Tkinter para operaciones CRUD.</p>
-                  </div>
-                  <div class="card-back">
-                    <h3>Tecnologías</h3>
-                    <p>Django 5.x, Django REST Framework, Python Tkinter (GUI), SQLite, django-cors-headers, requests</p>
-                    <p><strong>Mi rol:</strong> Diseñador frontend Tkinter + implementación parcial backend REST</p>
-                    <p><strong>Reto:</strong> CRUD completo de clientes/servicios vía API, interfaz gráfica intuitiva</p>
-                    <a href="https://github.com/tuusuario/mi-portafolio" target="_blank" class="card-link">Ver en GitHub →</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Proyecto 6 -->
-            <div class="carousel-3d-card" style="--index: 5">
-              <div class="card-content">
-                <div class="card-glow"></div>
-                <div class="card-inner">
-                  <div class="card-front">
-                    <video class="card-thumb" autoplay muted loop playsinline>
-                      <source src="../videos/1014 (1)(1).mp4" type="video/mp4">
-                    </video>
-                    <h3>Sistema de Gestión Bancaria de Corresponsal</h3>
-                    <p>Sistema desktop para gestionar clientes, cuentas y transacciones (depósitos/retiros).</p>
-                  </div>
-                  <div class="card-back">
-                    <h3>Tecnologías</h3>
-                    <p>Python 3.x, Tkinter (GUI nativa), Archivos de texto (.txt), POO con herencia, 10+ clases</p>
-                    <p><strong>Mi rol:</strong> Desarrollador full-stack único (arquitectura, datos, lógica, GUI, autenticación)</p>
-                    <p><strong>Reto:</strong> Gestionar operaciones bancarias, persistencia custom, sistema multi-ventana</p>
-                    <a href="https://github.com/tuusuario/mi-portafolio" target="_blank" class="card-link">Ver en GitHub →</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Proyecto 7 -->
-            <div class="carousel-3d-card" style="--index: 6">
-              <div class="card-content">
-                <div class="card-glow"></div>
-                <div class="card-inner">
-                  <div class="card-front">
-                    <video class="card-thumb" autoplay muted loop playsinline>
-                      <source src="../videos/1014 (1).mp4" type="video/mp4">
-                    </video>
-                    <h3>Sistema Avanzado de Gestión Empresarial</h3>
-                    <p>Plataforma integral para gestión de múltiples departamentos con reportes y análisis.</p>
-                  </div>
-                  <div class="card-back">
-                    <h3>Tecnologías</h3>
-                    <p>Python 3.x, Tkinter, POO Avanzada, Archivos de datos, Sistema de autenticación integrado</p>
-                    <p><strong>Mi rol:</strong> Arquitecto del sistema, diseño de datos, lógica de negocio, interfaz gráfica</p>
-                    <p><strong>Reto:</strong> Escalabilidad, manejo de múltiples usuarios, reportes complejos</p>
-                    <a href="https://github.com/tuusuario/mi-portafolio" target="_blank" class="card-link">Ver en GitHub →</a>
-                  </div>
+                <div class="card-back">
+                  <h3>Tecnologías</h3>
+                  <p>Next.js 15, React 19, Tailwind CSS 3.4, FastAPI, SQLAlchemy 2, Docker Compose</p>
+                  <p><strong>Mi rol:</strong> End-to-end (producto, UX/UI, frontend/backend, datos, despliegue)</p>
+                  <p><strong>Reto:</strong> Flujo completo de compra: catálogo, búsqueda, carrito, checkout</p>
+                  <a href="https://github.com/tuusuario/taskflow" target="_blank" class="card-link">Ver en GitHub →</a>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      <section id="habilidades" class="section runes-section">
-        <div class="runes-background-pattern"></div>
-        <div class="floating-runes" id="floatingRunesSection"></div>
-
-        <div class="runes-container">
-          <div class="runes-header">
-            <h1>Habilidades</h1>
-          </div>
-
-          <div class="skills-container">
-            <div class="rune-skill">
-              <div class="rune-symbol"><i class="fab fa-html5"></i></div>
-              <h3>HTML5</h3>
-              <div class="skill-level"><div class="skill-progress" style="width:50%"></div></div>
-              <p class="skill-description">Lenguaje de marcado que estructura la web moderna.</p>
-            </div>
-
-            <div class="rune-skill">
-              <div class="rune-symbol"><i class="fab fa-css3-alt"></i></div>
-              <h3>CSS3</h3>
-              <div class="skill-level"><div class="skill-progress" style="width:50%"></div></div>
-              <p class="skill-description">Estilos y animaciones que dan vida a interfaces.</p>
-            </div>
-
-            <div class="rune-skill">
-              <div class="rune-symbol"><i class="fab fa-js"></i></div>
-              <h3>JavaScript</h3>
-              <div class="skill-level"><div class="skill-progress" style="width:23%"></div></div>
-              <p class="skill-description">Interactividad y lógica para experiencias dinámicas.</p>
-            </div>
-
-            <div class="rune-skill">
-              <div class="rune-symbol"><i class="fab fa-react"></i></div>
-              <h3>React</h3>
-              <div class="skill-level"><div class="skill-progress" style="width:19%"></div></div>
-              <p class="skill-description">Componentes modernos para interfaces reactivas.</p>
-            </div>
-
-            <div class="rune-skill">
-              <div class="rune-symbol"><i class="fas fa-paint-brush"></i></div>
-              <h3>UX/UI</h3>
-              <div class="skill-level"><div class="skill-progress" style="width:70%"></div></div>
-              <p class="skill-description">Diseño enfocado en la experiencia del usuario.</p>
-            </div>
-
-            <div class="rune-skill">
-              <div class="rune-symbol"><i class="fas fa-database"></i></div>
-              <h3>SQL</h3>
-              <div class="skill-level"><div class="skill-progress" style="width:50%"></div></div>
-              <p class="skill-description">Gestión de bases de datos relacionales.</p>
-            </div>
-
-            <div class="rune-skill">
-              <div class="rune-symbol"><i class="fab fa-python"></i></div>
-              <h3>Python</h3>
-              <div class="skill-level"><div class="skill-progress" style="width:78%"></div></div>
-              <p class="skill-description">Lenguaje versátil para múltiples aplicaciones.</p>
-            </div>
-
-            <div class="rune-skill">
-              <div class="rune-symbol"><i class="fab fa-java"></i></div>
-              <h3>Java</h3>
-              <div class="skill-level"><div class="skill-progress" style="width:65%"></div></div>
-              <p class="skill-description">Programación orientada a objetos robusta.</p>
-            </div>
-
-            <div class="rune-skill">
-              <div class="rune-symbol"><i class="fab fa-github"></i></div>
-              <h3>GitHub</h3>
-              <div class="skill-level"><div class="skill-progress" style="width:40%"></div></div>
-              <p class="skill-description">Control de versiones y colaboración.</p>
-            </div>
-
-            <div class="rune-skill">
-              <div class="rune-symbol"><i class="fab fa-docker"></i></div>
-              <h3>Docker</h3>
-              <div class="skill-level"><div class="skill-progress" style="width:10%"></div></div>
-              <p class="skill-description">Containerización de aplicaciones.</p>
+          <!-- Proyecto 2 -->
+          <div class="carousel-3d-card" style="--index: 1">
+            <div class="card-content">
+              <div class="card-glow"></div>
+              <div class="card-inner">
+                <div class="card-front">
+                  <h3>ParkingPro SaaS - Gestión Empresarial de Parqueaderos</h3>
+                  <p>Plataforma SaaS con control en tiempo real, facturación automática y dashboard analytics.</p>
+                </div>
+                <div class="card-back">
+                  <h3>Tecnologías</h3>
+                  <p>Node.js 18, Express, PostgreSQL 15, Redis 7, Socket.IO, React 18, TypeScript, Docker</p>
+                  <p><strong>Mi rol:</strong> Full-stack architect (15+ tablas DB, 50+ endpoints, 7 servicios)</p>
+                  <p><strong>Reto:</strong> Sistema en tiempo real con WebSockets, múltiples tarifas y reservas</p>
+                  <a href="https://github.com/tuusuario/taskflow" target="_blank" class="card-link">Ver en GitHub →</a>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      <section id="certificados" class="section certificates-section">
-        <div class="circuit-background" aria-hidden="true">
-          <div class="circuit-container"></div>
-        </div>
-        <div class="certificates-content">
-          <h2>Certificados</h2>
-          <p>Certificaciones y cursos completados.</p>
-          
-          <div class="certificates-grid">
-            <!-- Certificado 1 -->
-            <div class="certificate-card" data-certificate="cert1">
-              <div class="cert-inner">
-                <div class="cert-front">
-                  <div class="cert-icon">📜</div>
-                  <h3>Certificado 1</h3>
-                  <p class="cert-issuer">Plataforma educativa</p>
-                  <p class="cert-year">2025</p>
+          <!-- Proyecto 3 -->
+          <div class="carousel-3d-card" style="--index: 2">
+            <div class="card-content">
+              <div class="card-glow"></div>
+              <div class="card-inner">
+                <div class="card-front">
+                  <video class="card-thumb" autoplay muted loop playsinline>
+                    <source src="../videos/2025-10-23 17-08-31.mp4" type="video/mp4">
+                  </video>
+                  <h3>Sistema de Gestión Registral - Registraduría Electrónica</h3>
+                  <p>Sistema web para gestionar personas, documentos y generar reportes estadísticos.</p>
+                </div>
+                <div class="card-back">
+                  <h3>Tecnologías</h3>
+                  <p>Node.js, Express, PostgreSQL, React (Vite), MVC Architecture, Axios</p>
+                  <p><strong>Mi rol:</strong> Desarrollador full-stack único (diseño DB, backend, frontend)</p>
+                  <p><strong>Reto:</strong> Gestionar datos con integridad, búsquedas y reportes por
+                    departamento/sexo/documento</p>
+                  <a href="https://github.com/tuusuario/mi-portafolio" target="_blank" class="card-link">Ver en GitHub
+                    →</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Proyecto 4 -->
+          <div class="carousel-3d-card" style="--index: 3">
+            <div class="card-content">
+              <div class="card-glow"></div>
+              <div class="card-inner">
+                <div class="card-front">
+                  <video class="card-thumb" autoplay muted loop playsinline>
+                    <source src="../videos/2025-10-21 09-59-56.mp4" type="video/mp4">
+                  </video>
+                  <h3>Portfolio Profesional Web Full-Stack</h3>
+                  <p>Sitio web responsive con sidebar colapsable, 7 proyectos, animaciones y modo oscuro/claro.</p>
+                </div>
+                <div class="card-back">
+                  <h3>Tecnologías</h3>
+                  <p>HTML5, CSS3, JavaScript Vanilla, Font Awesome, Google Fonts, Responsive Design, Flexbox, CSS Grid
+                  </p>
+                  <p><strong>Mi rol:</strong> Diseño HTML multi-página, componentes CSS reutilizables, animaciones
+                    interactivas</p>
+                  <p><strong>Reto:</strong> Maquetación responsiva, tema día/noche con persistencia, accesibilidad</p>
+                  <a href="https://github.com/tuusuario/mi-portafolio" target="_blank" class="card-link">Ver en GitHub
+                    →</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Proyecto 5 -->
+          <div class="carousel-3d-card" style="--index: 4">
+            <div class="card-content">
+              <div class="card-glow"></div>
+              <div class="card-inner">
+                <div class="card-front">
+                  <video class="card-thumb" autoplay muted loop playsinline>
+                    <source src="../videos/2025-10-23 18-00-50.mp4" type="video/mp4">
+                  </video>
+                  <h3>Aplicación Cliente-Servidor de Gestión de Lavadero</h3>
+                  <p>App para gestionar clientes y servicios: Backend REST + Frontend Tkinter para operaciones CRUD.</p>
+                </div>
+                <div class="card-back">
+                  <h3>Tecnologías</h3>
+                  <p>Django 5.x, Django REST Framework, Python Tkinter (GUI), SQLite, django-cors-headers, requests</p>
+                  <p><strong>Mi rol:</strong> Diseñador frontend Tkinter + implementación parcial backend REST</p>
+                  <p><strong>Reto:</strong> CRUD completo de clientes/servicios vía API, interfaz gráfica intuitiva</p>
+                  <a href="https://github.com/tuusuario/mi-portafolio" target="_blank" class="card-link">Ver en GitHub
+                    →</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Proyecto 6 -->
+          <div class="carousel-3d-card" style="--index: 5">
+            <div class="card-content">
+              <div class="card-glow"></div>
+              <div class="card-inner">
+                <div class="card-front">
+                  <video class="card-thumb" autoplay muted loop playsinline>
+                    <source src="../videos/1014 (1)(1).mp4" type="video/mp4">
+                  </video>
+                  <h3>Sistema de Gestión Bancaria de Corresponsal</h3>
+                  <p>Sistema desktop para gestionar clientes, cuentas y transacciones (depósitos/retiros).</p>
+                </div>
+                <div class="card-back">
+                  <h3>Tecnologías</h3>
+                  <p>Python 3.x, Tkinter (GUI nativa), Archivos de texto (.txt), POO con herencia, 10+ clases</p>
+                  <p><strong>Mi rol:</strong> Desarrollador full-stack único (arquitectura, datos, lógica, GUI,
+                    autenticación)</p>
+                  <p><strong>Reto:</strong> Gestionar operaciones bancarias, persistencia custom, sistema multi-ventana
+                  </p>
+                  <a href="https://github.com/tuusuario/mi-portafolio" target="_blank" class="card-link">Ver en GitHub
+                    →</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Proyecto 7 -->
+          <div class="carousel-3d-card" style="--index: 6">
+            <div class="card-content">
+              <div class="card-glow"></div>
+              <div class="card-inner">
+                <div class="card-front">
+                  <video class="card-thumb" autoplay muted loop playsinline>
+                    <source src="../videos/1014 (1).mp4" type="video/mp4">
+                  </video>
+                  <h3>Sistema Avanzado de Gestión Empresarial</h3>
+                  <p>Plataforma integral para gestión de múltiples departamentos con reportes y análisis.</p>
+                </div>
+                <div class="card-back">
+                  <h3>Tecnologías</h3>
+                  <p>Python 3.x, Tkinter, POO Avanzada, Archivos de datos, Sistema de autenticación integrado</p>
+                  <p><strong>Mi rol:</strong> Arquitecto del sistema, diseño de datos, lógica de negocio, interfaz
+                    gráfica</p>
+                  <p><strong>Reto:</strong> Escalabilidad, manejo de múltiples usuarios, reportes complejos</p>
+                  <a href="https://github.com/tuusuario/mi-portafolio" target="_blank" class="card-link">Ver en GitHub
+                    →</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <!-- Modal para fullscreen -->
-        <div class="certificate-modal" id="certificateModal">
-          <div class="modal-content">
-            <button class="modal-close">&times;</button>
-            <img id="modalImage" src="" alt="Certificado" />
+    <section id="habilidades" class="section runes-section">
+      <div class="runes-background-pattern"></div>
+      <div class="floating-runes" id="floatingRunesSection"></div>
+
+      <div class="runes-container">
+        <div class="runes-header">
+          <h1>Habilidades</h1>
+        </div>
+
+        <div class="skills-container">
+          <div class="rune-skill">
+            <div class="rune-symbol"><i class="fab fa-html5"></i></div>
+            <h3>HTML5</h3>
+            <div class="skill-level">
+              <div class="skill-progress" style="width:50%"></div>
+            </div>
+            <p class="skill-description">Lenguaje de marcado que estructura la web moderna.</p>
+          </div>
+
+          <div class="rune-skill">
+            <div class="rune-symbol"><i class="fab fa-css3-alt"></i></div>
+            <h3>CSS3</h3>
+            <div class="skill-level">
+              <div class="skill-progress" style="width:50%"></div>
+            </div>
+            <p class="skill-description">Estilos y animaciones que dan vida a interfaces.</p>
+          </div>
+
+          <div class="rune-skill">
+            <div class="rune-symbol"><i class="fab fa-js"></i></div>
+            <h3>JavaScript</h3>
+            <div class="skill-level">
+              <div class="skill-progress" style="width:23%"></div>
+            </div>
+            <p class="skill-description">Interactividad y lógica para experiencias dinámicas.</p>
+          </div>
+
+          <div class="rune-skill">
+            <div class="rune-symbol"><i class="fab fa-react"></i></div>
+            <h3>React</h3>
+            <div class="skill-level">
+              <div class="skill-progress" style="width:19%"></div>
+            </div>
+            <p class="skill-description">Componentes modernos para interfaces reactivas.</p>
+          </div>
+
+          <div class="rune-skill">
+            <div class="rune-symbol"><i class="fas fa-paint-brush"></i></div>
+            <h3>UX/UI</h3>
+            <div class="skill-level">
+              <div class="skill-progress" style="width:70%"></div>
+            </div>
+            <p class="skill-description">Diseño enfocado en la experiencia del usuario.</p>
+          </div>
+
+          <div class="rune-skill">
+            <div class="rune-symbol"><i class="fas fa-database"></i></div>
+            <h3>SQL</h3>
+            <div class="skill-level">
+              <div class="skill-progress" style="width:50%"></div>
+            </div>
+            <p class="skill-description">Gestión de bases de datos relacionales.</p>
+          </div>
+
+          <div class="rune-skill">
+            <div class="rune-symbol"><i class="fab fa-python"></i></div>
+            <h3>Python</h3>
+            <div class="skill-level">
+              <div class="skill-progress" style="width:78%"></div>
+            </div>
+            <p class="skill-description">Lenguaje versátil para múltiples aplicaciones.</p>
+          </div>
+
+          <div class="rune-skill">
+            <div class="rune-symbol"><i class="fab fa-java"></i></div>
+            <h3>Java</h3>
+            <div class="skill-level">
+              <div class="skill-progress" style="width:65%"></div>
+            </div>
+            <p class="skill-description">Programación orientada a objetos robusta.</p>
+          </div>
+
+          <div class="rune-skill">
+            <div class="rune-symbol"><i class="fab fa-github"></i></div>
+            <h3>GitHub</h3>
+            <div class="skill-level">
+              <div class="skill-progress" style="width:40%"></div>
+            </div>
+            <p class="skill-description">Control de versiones y colaboración.</p>
+          </div>
+
+          <div class="rune-skill">
+            <div class="rune-symbol"><i class="fab fa-docker"></i></div>
+            <h3>Docker</h3>
+            <div class="skill-level">
+              <div class="skill-progress" style="width:10%"></div>
+            </div>
+            <p class="skill-description">Containerización de aplicaciones.</p>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="contacto" class="section contact-section">
-        <h2>Contactos</h2>
-        <div class="hanging-spheres-container">
-          <div class="background-stars-contact" aria-hidden="true"></div>
-          
-          <div class="hanging-spheres">
-            <!-- Sphere 1: Email -->
-            <div class="sphere-container">
-              <div class="string-wrapper">
-                <span class="rune-start">ᚠ</span>
-                <div class="string"></div>
-              </div>
-              <a href="mailto:julian.estiven.gutierrez@correounivalle.edu.co" class="sphere email-sphere" title="Email">
-                <i class="fas fa-envelope"></i>
-              </a>
-            </div>
-            
-            <!-- Sphere 2: Phone -->
-            <div class="sphere-container">
-              <div class="string-wrapper">
-                <span class="rune-start">ᚢ</span>
-                <div class="string"></div>
-              </div>
-              <a href="tel:+573234378971" class="sphere phone-sphere" title="Teléfono">
-                <i class="fas fa-phone"></i>
-              </a>
-            </div>
-            
-            <!-- Sphere 3: Location -->
-            <div class="sphere-container">
-              <div class="string-wrapper">
-                <span class="rune-start">ᚦ</span>
-                <div class="string"></div>
-              </div>
-              <a href="https://www.google.com/maps/place/El+Vergel,+G%C3%A9nova,+Quind%C3%ADo/@4.1953196,-75.8069597,14z" target="_blank" rel="noopener" class="sphere location-sphere" title="Ubicación">
-                <i class="fas fa-map-marker-alt"></i>
-              </a>
-            </div>
-            
-            <!-- Sphere 4: GitHub -->
-            <div class="sphere-container">
-              <div class="string-wrapper">
-                <span class="rune-start">ᚨ</span>
-                <div class="string"></div>
-              </div>
-              <a href="https://github.com/Karatsuyu" target="_blank" rel="noopener" class="sphere github-sphere" title="GitHub">
-                <i class="fab fa-github"></i>
-              </a>
-            </div>
+    <section id="certificados" class="section certificates-section">
+      <div class="circuit-background" aria-hidden="true">
+        <div class="circuit-container"></div>
+      </div>
+      <div class="certificates-content">
+        <h2>Certificados</h2>
+        <p>Certificaciones y cursos completados.</p>
 
-            <!-- Sphere 5: LinkedIn -->
-            <div class="sphere-container">
-              <div class="string-wrapper">
-                <span class="rune-start">ᚱ</span>
-                <div class="string"></div>
+        <div class="certificates-grid">
+          <!-- Certificado 1 -->
+          <div class="certificate-card" data-certificate="cert1">
+            <div class="cert-inner">
+              <div class="cert-front">
+                <div class="cert-icon">📜</div>
+                <h3>Certificado 1</h3>
+                <p class="cert-issuer">Plataforma educativa</p>
+                <p class="cert-year">2025</p>
               </div>
-              <a href="https://www.linkedin.com/in/julian-estiven-gutierrez-tabares-04119a382/" target="_blank" rel="noopener" class="sphere linkedin-sphere" title="LinkedIn">
-                <i class="fab fa-linkedin"></i>
-              </a>
-            </div>
-
-            <!-- Sphere 6: WhatsApp -->
-            <div class="sphere-container">
-              <div class="string-wrapper">
-                <span class="rune-start">ᚲ</span>
-                <div class="string"></div>
-              </div>
-              <a href="https://wa.me/573234378971" target="_blank" rel="noopener" class="sphere whatsapp-sphere" title="WhatsApp">
-                <i class="fab fa-whatsapp"></i>
-              </a>
-            </div>
-
-            <!-- Sphere 7: Instagram -->
-            <div class="sphere-container">
-              <div class="string-wrapper">
-                <span class="rune-start">ᚷ</span>
-                <div class="string"></div>
-              </div>
-              <a href="https://www.instagram.com/tabjulian07/" target="_blank" rel="noopener" class="sphere instagram-sphere" title="Instagram">
-                <i class="fab fa-instagram"></i>
-              </a>
-            </div>
-
-            <!-- Sphere 8: X (Twitter) -->
-            <div class="sphere-container">
-              <div class="string-wrapper">
-                <span class="rune-start">ᚹ</span>
-                <div class="string"></div>
-              </div>
-              <a href="https://x.com/JulinTabar7259" target="_blank" rel="noopener" class="sphere x-sphere" title="X">
-                <i class="fab fa-x-twitter"></i>
-              </a>
             </div>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+
+      <!-- Modal para fullscreen -->
+      <div class="certificate-modal" id="certificateModal">
+        <div class="modal-content">
+          <button class="modal-close">&times;</button>
+          <img id="modalImage" src="" alt="Certificado" />
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="section contact-section">
+      <h2>Contactos</h2>
+      <div class="hanging-spheres-container">
+        <div class="background-stars-contact" aria-hidden="true"></div>
+
+        <div class="hanging-spheres">
+          <!-- Sphere 1: Email -->
+          <div class="sphere-container">
+            <div class="string-wrapper">
+              <span class="rune-start">ᚠ</span>
+              <div class="string"></div>
+            </div>
+            <a href="mailto:julian.estiven.gutierrez@correounivalle.edu.co" class="sphere email-sphere" title="Email">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </div>
+
+          <!-- Sphere 2: Phone -->
+          <div class="sphere-container">
+            <div class="string-wrapper">
+              <span class="rune-start">ᚢ</span>
+              <div class="string"></div>
+            </div>
+            <a href="tel:+573234378971" class="sphere phone-sphere" title="Teléfono">
+              <i class="fas fa-phone"></i>
+            </a>
+          </div>
+
+          <!-- Sphere 3: Location -->
+          <div class="sphere-container">
+            <div class="string-wrapper">
+              <span class="rune-start">ᚦ</span>
+              <div class="string"></div>
+            </div>
+            <a href="https://www.google.com/maps/place/El+Vergel,+G%C3%A9nova,+Quind%C3%ADo/@4.1953196,-75.8069597,14z"
+              target="_blank" rel="noopener" class="sphere location-sphere" title="Ubicación">
+              <i class="fas fa-map-marker-alt"></i>
+            </a>
+          </div>
+
+          <!-- Sphere 4: GitHub -->
+          <div class="sphere-container">
+            <div class="string-wrapper">
+              <span class="rune-start">ᚨ</span>
+              <div class="string"></div>
+            </div>
+            <a href="https://github.com/Karatsuyu" target="_blank" rel="noopener" class="sphere github-sphere"
+              title="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+
+          <!-- Sphere 5: LinkedIn -->
+          <div class="sphere-container">
+            <div class="string-wrapper">
+              <span class="rune-start">ᚱ</span>
+              <div class="string"></div>
+            </div>
+            <a href="https://www.linkedin.com/in/julian-estiven-gutierrez-tabares-04119a382/" target="_blank"
+              rel="noopener" class="sphere linkedin-sphere" title="LinkedIn">
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </div>
+
+          <!-- Sphere 6: WhatsApp -->
+          <div class="sphere-container">
+            <div class="string-wrapper">
+              <span class="rune-start">ᚲ</span>
+              <div class="string"></div>
+            </div>
+            <a href="https://wa.me/573234378971" target="_blank" rel="noopener" class="sphere whatsapp-sphere"
+              title="WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+
+          <!-- Sphere 7: Instagram -->
+          <div class="sphere-container">
+            <div class="string-wrapper">
+              <span class="rune-start">ᚷ</span>
+              <div class="string"></div>
+            </div>
+            <a href="https://www.instagram.com/tabjulian07/" target="_blank" rel="noopener"
+              class="sphere instagram-sphere" title="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+
+          <!-- Sphere 8: X (Twitter) -->
+          <div class="sphere-container">
+            <div class="string-wrapper">
+              <span class="rune-start">ᚹ</span>
+              <div class="string"></div>
+            </div>
+            <a href="https://x.com/JulinTabar7259" target="_blank" rel="noopener" class="sphere x-sphere" title="X">
+              <i class="fab fa-x-twitter"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer class="footer">
     <p class="footer-copyright">© 2025 Todos los derechos reservados</p>
@@ -546,4 +596,5 @@
 
   <script src="js/main.js"></script>
 </body>
+
 </html>

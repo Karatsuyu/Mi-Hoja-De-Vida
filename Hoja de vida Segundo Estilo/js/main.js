@@ -531,18 +531,28 @@ document.addEventListener('DOMContentLoaded', function(){
         // Create subtle stars in the home nebula (only on #home)
         const homeNebula = document.querySelector('.home-nebula');
         if(homeNebula){
-          // keep the count moderate so performance is fine but visible
-          const starCount = 60;
+          // Increased star count for more visible and fuller background
+          const starCount = 150;
           for(let i=0;i<starCount;i++){
             const s = document.createElement('span');
             s.className = 'star';
             // random position inside hero-inner (allow a bit of overflow top since nebula was lifted)
             s.style.left = `${Math.random()*100}%`;
             s.style.top = `${Math.random()*110 - 5}%`;
-            // size 1px - 4px (some stars slightly larger)
-            const baseSize = Math.random()*3 + 1;
-            const isBig = Math.random() > 0.86; // ~14% bigger
-            const size = isBig ? baseSize * 1.8 : baseSize;
+            
+            // More varied sizes: small, medium, and large stars
+            const rand = Math.random();
+            let size;
+            if(rand < 0.6) {
+              // 60% small stars (1.5-3px)
+              size = Math.random()*1.5 + 1.5;
+            } else if(rand < 0.85) {
+              // 25% medium stars (3-5px)
+              size = Math.random()*2 + 3;
+            } else {
+              // 15% large stars (5-8px)
+              size = Math.random()*3 + 5;
+            }
             s.style.width = `${size}px`;
             s.style.height = `${size}px`;
 
@@ -557,8 +567,8 @@ document.addEventListener('DOMContentLoaded', function(){
             // start invisible; the CSS animation will make them appear/disappear
             s.style.opacity = '0';
 
-            // slightly brighter initial opacity for some larger stars
-            if(isBig) s.style.opacity = '0.85';
+            // slightly brighter initial opacity for larger stars
+            if(size > 4.5) s.style.opacity = '0.85';
 
             homeNebula.appendChild(s);
           }
@@ -847,4 +857,53 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   })();
 });
+
+// ======= MENU LATERAL MOVIL =======
+const mobileBtn = document.getElementById("mobileMenuBtn");
+
+if (mobileBtn) {
+
+  // Crear menú si no existe
+  if (!document.querySelector(".mobile-sidebar")) {
+    const sidebar = document.createElement("div");
+    sidebar.className = "mobile-sidebar";
+    sidebar.innerHTML = `
+      <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Cerrar menú">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <a href="#home">Home</a>
+      <a href="#educacion">Formación</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#habilidades">Habilidades</a>
+      <a href="#certificados">Certificados</a>
+      <a href="#contacto">Contactos</a>
+      <a href="#" class="colors-open">Colores</a>
+      <a href="#" class="style-open">Estilos</a>
+    `;
+    document.body.appendChild(sidebar);
+  }
+
+  const sidebar = document.querySelector(".mobile-sidebar");
+  const closeBtn = document.getElementById("mobileMenuClose");
+
+  // abrir menú
+  mobileBtn.addEventListener("click", () => {
+    sidebar.classList.add("open");
+  });
+
+  // cerrar menú con la X
+  closeBtn.addEventListener("click", () => {
+    sidebar.classList.remove("open");
+  });
+
+  // cerrar al tocar un link
+  sidebar.addEventListener("click", (e) => {
+    if (e.target.tagName === "A") {
+      sidebar.classList.remove("open");
+    }
+  });
+}
+
+
 
