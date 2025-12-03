@@ -112,7 +112,7 @@ async def create_contact_message(
             username=message_data.username,
             email=message_data.email,
             message=message_data.message,
-            read_status="unread"
+            read_status=False  # False = unread, True = read
         )
         
         db.add(new_message)
@@ -214,7 +214,7 @@ async def mark_message_as_read(
             detail="Mensaje no encontrado"
         )
     
-    message.read_status = "read"
+    message.read_status = True  # True = read
     db.commit()
     
     return {"message": "Mensaje marcado como leído"}
