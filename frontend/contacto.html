@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Julián Gutierrez - Contacto</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Botón hamburguesa para móviles -->
+  <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <aside class="sidebar">
+    <div class="profile">
+      <img src="/images/1756766660817.png" alt="Foto de perfil" />
+      <h2 class="name">Julián Estiven Gutierrez</h2>
+      <p class="title">Tecnólogo en Desarrollo de Software</p>
+    </div>
+    <nav class="nav-menu">
+      <ul>
+        <li><a href="index.html" class="nav-link"><i class="fas fa-home icon"></i><span class="text">Inicio</span></a></li>
+        <li><a href="formacion.html" class="nav-link"><i class="fas fa-graduation-cap icon"></i><span class="text">Formación</span></a></li>
+        <li><a href="proyectos.html" class="nav-link"><i class="fas fa-code icon"></i><span class="text">Proyectos</span></a></li>
+        <li><a href="habilidades.html" class="nav-link"><i class="fas fa-laptop-code icon"></i><span class="text">Habilidades</span></a></li>
+        <li><a href="certificados.html" class="nav-link"><i class="fas fa-award icon"></i><span class="text">Certificados</span></a></li>
+        <li><a href="contacto.html" class="nav-link"><i class="fas fa-envelope icon"></i><span class="text">Contacto</span></a></li>
+        <li>
+          <button id="themeToggle" class="nav-link" style="width:100%; background:none; border:none; cursor:pointer;">
+            <i class="fas fa-sun icon"></i><span class="text">Modo Día</span>
+          </button>
+        </li>
+        <li style="position: relative;">
+          <button class="nav-link" id="styleToggleBtn" style="width:100%; background:none; border:none; cursor:pointer; display:flex; align-items:center; gap:10px;">
+            <i class="fas fa-palette icon"></i><span class="text" style="position:relative;">Estilo
+              <div id="styleDropdown" class="style-dropdown-menu" style="display:none; position:absolute; left:0; top:100%; background:rgba(30,41,59,0.95); border:1px solid rgba(255,0,153,0.2); border-radius:8px; margin-top:5px; min-width:150px; z-index:100; box-shadow:0 10px 30px rgba(0,0,0,0.3); white-space:nowrap;">
+                <a href="../frontend/Hoja de vida Segundo Estilo/index.html" class="style-dropdown-item" style="display:block; padding:10px 15px; color:#ffffff; text-decoration:none;">Neon</a>
+              </div>
+            </span>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <section class="section">
+      <h2 class="tituloCentroC">Contactos</h2>
+      
+      <div class="social-links">
+        <!-- Contacto directo -->
+        <a href="mailto:julian.estiven.gutierrez@correounivalle.edu.co" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        <a href="tel:+573234378971" aria-label="Teléfono"><i class="fas fa-phone"></i></a>
+        <a href="https://www.google.com/maps/place/El+Vergel,+G%C3%A9nova,+Quind%C3%ADo/@4.1953196,-75.8069597,14z/data=!3m1!4b1!4m6!3m5!1s0x8e39abe8592c0b3d:0x2fb9fd2cf7f5e0e0!8m2!3d4.19532!4d-75.78636!16s%2Fg%2F1tmz7zv_?entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" aria-label="Ubicación"><i class="fas fa-map-marker-alt"></i></a>
+
+        <!-- Redes sociales -->
+        <a href="https://github.com/Karatsuyu" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/julian-estiven-gutierrez-tabares-04119a382/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://wa.me/573234378971" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/tabjulian07/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://x.com/JulinTabar7259" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      </div>
+
+      <!-- Formulario de Contacto -->
+      <div class="contact-form-container">
+        <h3>Envíame un mensaje</h3>
+        <form id="contactForm" class="contact-form">
+          <div class="form-group">
+            <label for="username">Nombre completo *</label>
+            <input 
+              type="text" 
+              id="username" 
+              name="username" 
+              required 
+              minlength="2" 
+              maxlength="100"
+              placeholder="Tu nombre completo"
+            >
+            <span class="error-message" id="username-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Correo electrónico *</label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              required 
+              placeholder="tu@email.com"
+            >
+            <span class="error-message" id="email-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Mensaje *</label>
+            <textarea 
+              id="message" 
+              name="message" 
+              required 
+              minlength="10" 
+              maxlength="2000" 
+              rows="6"
+              placeholder="Escribe tu mensaje aquí... (mínimo 10 caracteres)"
+            ></textarea>
+            <div class="char-counter">
+              <span id="char-count">0</span>/2000 caracteres
+            </div>
+            <span class="error-message" id="message-error"></span>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">
+            <i class="fas fa-paper-plane"></i>
+            <span class="btn-text">Enviar Mensaje</span>
+            <div class="spinner" style="display: none;">
+              <i class="fas fa-spinner fa-spin"></i>
+            </div>
+          </button>
+        </form>
+
+        <!-- Mensajes de respuesta -->
+        <div id="responseMessage" class="response-message" style="display: none;"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal para ver imagen ampliada -->
+  <div id="imgModal" class="img-modal" aria-hidden="true">
+    <button class="img-modal__close" aria-label="Cerrar imagen">&times;</button>
+    <img class="img-modal__image" alt="Foto de perfil ampliada" />
+  </div>
+
+  <script src="js/scripts.js"></script>
+</body>
+</html>

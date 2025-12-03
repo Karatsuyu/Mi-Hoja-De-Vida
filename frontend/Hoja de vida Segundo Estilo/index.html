@@ -587,6 +587,45 @@
           </div>
         </div>
       </div>
+
+      <!-- Formulario de contacto rúnico -->
+      <div class="runic-contact-form">
+        <h2 class="form-header">Envíame un mensaje</h2>
+        
+        <form id="contactForm" class="contact-form-futuristic">
+          <div class="form-group">
+            <label for="username" class="form-label">Nombre completo *</label>
+            <input type="text" id="username" name="username" class="form-input" placeholder="Tu nombre completo" required minlength="2">
+            <span class="error-message" id="username-error"></span>
+          </div>
+          
+          <div class="form-group">
+            <label for="email" class="form-label">Correo electrónico *</label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="tu@email.com" required>
+            <span class="error-message" id="email-error"></span>
+          </div>
+          
+          <div class="form-group">
+            <label for="message" class="form-label">Mensaje *</label>
+            <textarea id="message" name="message" class="form-input form-textarea" placeholder="Escribe tu mensaje aquí... (mínimo 10 caracteres)" required minlength="10" maxlength="2000"></textarea>
+            <div class="char-counter">0/2000 caracteres</div>
+            <span class="error-message" id="message-error"></span>
+          </div>
+          
+          <button type="submit" class="submit-btn-runic" id="submitBtn">
+            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M20 4L12 12L4 4M12 12L20 20M12 12L4 20"/>
+            </svg>
+            <span class="btn-text">ENVIAR MENSAJE</span>
+            <div class="spinner" style="display: none;">
+              <i class="fas fa-spinner fa-spin"></i>
+            </div>
+          </button>
+        </form>
+
+        <!-- Mensajes de respuesta -->
+        <div id="responseMessage" class="response-message" style="display: none;"></div>
+      </div>
     </section>
   </main>
 

@@ -930,12 +930,12 @@ h2{margin-top:0}
   position: relative;
   overflow: hidden;
   background: linear-gradient(135deg, rgba(12, 6, 18, 0.5), rgba(58, 12, 71, 0.3));
-  padding: 3rem 1rem;
-  min-height: 500px;
+  padding: 3rem 1rem 4rem;
+  min-height: 150vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .contact-section h2 {
@@ -949,12 +949,13 @@ h2{margin-top:0}
 .hanging-spheres-container {
   position: relative;
   width: 100%;
-  max-width: 1000px;
-  height: 400px;
+  max-width: 1200px;
+  height: 350px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   pointer-events: none;
+  margin-bottom: 4rem;
 }
 
 .background-stars-contact {
@@ -979,13 +980,14 @@ h2{margin-top:0}
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 2rem;
+  flex-wrap: nowrap;
+  gap: 1rem;
   pointer-events: none;
   z-index: 5;
-  padding: 0 2rem;
+  padding: 0 1rem;
+  overflow-x: visible;
 }
 
 .sphere-container {
@@ -1209,30 +1211,97 @@ h2{margin-top:0}
   }
   
   .contact-label {
+    display: none !important;
     font-size: 0.8rem;
     min-width: 100px;
   }
 }
 
-@media (max-width: 480px) {
-  .hanging-spheres {
-    padding: 0 1rem;
+@media (max-width: 768px) {
+  .contact-section {
+    min-height: 180vh;
+    padding: 3rem 1rem 4rem;
   }
   
   .hanging-spheres-container {
-    height: 500px;
+    height: 280px;
+    margin-bottom: 3rem;
   }
   
-  .contact-section {
-    padding: 4rem 1rem;
-    min-height: 650px;
+  .hanging-spheres {
+    gap: 0.8rem;
+    padding: 0 0.5rem;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    overflow-x: auto;
   }
   
   .sphere-container {
     gap: 0.5rem;
+    min-width: 70px;
+    flex-shrink: 0;
+  }
+  
+  .sphere {
+    width: 55px;
+    height: 55px;
+  }
+  
+  .sphere svg,
+  .sphere i {
+    font-size: 1.3rem;
+    width: 22px;
+    height: 22px;
+  }
+  
+  .runic-contact-form {
+    max-width: 95%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-section {
+    padding: 2rem 0.5rem 3rem;
+    min-height: 160vh;
+  }
+  
+  .hanging-spheres-container {
+    height: 250px;
+    margin-bottom: 2rem;
+  }
+  
+  .hanging-spheres {
+    padding: 0 0.3rem;
+    gap: 0.5rem;
+    justify-content: space-between;
+  }
+  
+  .sphere-container {
+    gap: 0.3rem;
+    min-width: 60px;
+    flex-shrink: 0;
+  }
+  
+  .sphere {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .sphere svg,
+  .sphere i {
+    font-size: 1rem;
+    width: 18px;
+    height: 18px;
+  }
+  
+  .runic-contact-form {
+    max-width: 100%;
+    padding: 20px;
   }
   
   .contact-label {
+    display: none !important;
     font-size: 0.75rem;
     min-width: 80px;
   }
@@ -2439,6 +2508,266 @@ h2{margin-top:0}
     height: 0 !important;
     overflow: hidden !important;
     pointer-events: none !important;
+  }
+}
+
+/* =============== FORMULARIO DE CONTACTO RÚNICO =============== */
+.runic-contact-form {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  background: rgba(18, 10, 32, 0.9);
+  border-radius: 15px;
+  box-shadow: 
+    0 0 30px var(--accent-glow),
+    inset 0 0 20px var(--accent-glow);
+  position: relative;
+  overflow: hidden;
+  animation: runicGlow 3s infinite ease-in-out;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--accent);
+  font-size: 28px;
+  font-weight: bold;
+  text-shadow: 0 0 10px var(--accent);
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.form-header::before,
+.form-header::after {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.form-header::before {
+  left: -60px;
+}
+
+.form-header::after {
+  right: -60px;
+}
+
+.contact-form-futuristic .form-group {
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.contact-form-futuristic .form-label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--accent);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  max-width: 100%;
+}
+
+.contact-form-futuristic .form-input {
+  width: 100%;
+  padding: 15px 20px;
+  background: rgba(26, 14, 42, 0.8);
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 16px;
+  transition: all 0.3s ease;
+  outline: none;
+  box-shadow: 0 0 10px var(--accent-glow);
+  box-sizing: border-box;
+}
+
+.contact-form-futuristic .form-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 15px var(--accent-glow);
+  transform: scale(1.01);
+}
+
+.contact-form-futuristic .form-input::placeholder {
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+.contact-form-futuristic .form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.contact-form-futuristic .char-counter {
+  text-align: right;
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.submit-btn-runic {
+  width: 100%;
+  padding: 15px 20px;
+  background: linear-gradient(90deg, var(--accent), var(--accent));
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px var(--accent-glow);
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+}
+
+.submit-btn-runic:hover {
+  background: linear-gradient(90deg, var(--accent), var(--accent));
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px var(--accent-glow);
+  filter: brightness(1.2);
+}
+
+.submit-btn-runic:active {
+  transform: translateY(0px);
+}
+
+.submit-btn-runic:disabled {
+  background: #4a4a4a;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.arrow-icon {
+  width: 20px;
+  height: 20px;
+  fill: white;
+  stroke: white;
+  stroke-width: 2;
+}
+
+.spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Runas en los bordes del formulario */
+.runic-contact-form::before {
+  content: "ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 16px;
+  opacity: 0.4;
+  letter-spacing: 3px;
+  padding: 10px;
+  background: linear-gradient(90deg, transparent, rgba(18, 10, 32, 0.9), transparent);
+  z-index: 1;
+}
+
+.runic-contact-form::after {
+  content: "ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊ";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 16px;
+  opacity: 0.4;
+  letter-spacing: 3px;
+  padding: 10px;
+  background: linear-gradient(90deg, transparent, rgba(18, 10, 32, 0.9), transparent);
+  z-index: 1;
+}
+
+/* Animación de brillo en el formulario */
+@keyframes runicGlow {
+  0% { box-shadow: 0 0 30px var(--accent-glow), inset 0 0 20px var(--accent-glow); }
+  50% { box-shadow: 0 0 40px var(--accent-glow), inset 0 0 30px var(--accent-glow); }
+  100% { box-shadow: 0 0 30px var(--accent-glow), inset 0 0 20px var(--accent-glow); }
+}
+
+/* Mensajes de error y éxito */
+.error-message {
+  display: none;
+  color: #ff6b6b;
+  font-size: 12px;
+  margin-top: 5px;
+  text-shadow: 0 0 5px #ff6b6b;
+}
+
+.error-message.show {
+  display: block;
+}
+
+.response-message {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.response-message.success {
+  background: rgba(76, 175, 80, 0.2);
+  color: #4CAF50;
+  border: 2px solid #4CAF50;
+  box-shadow: 0 0 15px rgba(76, 175, 80, 0.3);
+}
+
+.response-message.error {
+  background: rgba(244, 67, 54, 0.2);
+  color: #f44336;
+  border: 2px solid #f44336;
+  box-shadow: 0 0 15px rgba(244, 67, 54, 0.3);
+}
+
+/* Responsive para el formulario */
+@media (max-width: 768px) {
+  .runic-contact-form {
+    padding: 20px;
+    max-width: 100%;
+    margin: 2rem auto 0;
+  }
+  
+  .form-header {
+    font-size: 24px;
+  }
+  
+  .form-header::before,
+  .form-header::after {
+    display: none;
+  }
+  
+  .contact-form-futuristic .form-input {
+    padding: 12px 15px;
+    font-size: 14px;
+  }
+  
+  .submit-btn-runic {
+    padding: 12px 15px;
+    font-size: 16px;
   }
 }
 

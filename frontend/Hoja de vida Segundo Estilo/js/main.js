@@ -905,5 +905,174 @@ if (mobileBtn) {
   });
 }
 
+// =============== FORMULARIO DE CONTACTO RÚNICO ===============
+(function initRunicContactForm() {
+  const API_BASE_URL = 'http://localhost:8001';
+  
+  const contactForm = document.getElementById('contactForm');
+  const messageInput = document.getElementById('message');
+  const charCounter = document.querySelector('.char-counter');
+  const submitBtn = document.getElementById('submitBtn');
+  const spinner = document.querySelector('.spinner');
+  const btnText = document.querySelector('.btn-text');
+  const responseMessage = document.getElementById('responseMessage');
+
+  if (!contactForm) return;
+
+  // Contador de caracteres
+  if (messageInput && charCounter) {
+    messageInput.addEventListener('input', function() {
+      const currentLength = this.value.length;
+      charCounter.textContent = `${currentLength}/2000 caracteres`;
+      
+      // Cambiar color si se acerca al límite
+      if (currentLength > 1900) {
+        charCounter.style.color = '#ff6b6b';
+      } else {
+        charCounter.style.color = '#9f6aff';
+      }
+    });
+  }
+
+  // Función para mostrar errores
+  function showError(fieldName, message) {
+    const errorElement = document.getElementById(`${fieldName}-error`);
+    if (errorElement) {
+      errorElement.textContent = message;
+      errorElement.classList.add('show');
+    }
+  }
+
+  // Función para limpiar errores
+  function clearErrors() {
+    const errorMessages = document.querySelectorAll('.error-message');
+    errorMessages.forEach(error => {
+      error.classList.remove('show');
+      error.textContent = '';
+    });
+  }
+
+  // Función para mostrar mensaje de respuesta
+  function showResponseMessage(message, type) {
+    if (responseMessage) {
+      responseMessage.textContent = message;
+      responseMessage.className = `response-message ${type}`;
+      responseMessage.style.display = 'block';
+      
+      // Auto-ocultar después de 5 segundos
+      setTimeout(() => {
+        responseMessage.style.display = 'none';
+      }, 5000);
+    }
+  }
+
+  // Validación del formulario
+  function validateForm(formData) {
+    const errors = {};
+
+    if (!formData.username || formData.username.trim().length < 2) {
+      errors.username = 'El nombre debe tener al menos 2 caracteres';
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email || !emailRegex.test(formData.email)) {
+      errors.email = 'Por favor ingresa un email válido';
+    }
+
+    if (!formData.message || formData.message.trim().length < 10) {
+      errors.message = 'El mensaje debe tener al menos 10 caracteres';
+    }
+
+    if (formData.message && formData.message.length > 2000) {
+      errors.message = 'El mensaje no puede exceder 2000 caracteres';
+    }
+
+    return errors;
+  }
+
+  // Envío del formulario
+  contactForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    // Limpiar errores previos
+    clearErrors();
+    
+    // Obtener datos del formulario
+    const formData = {
+      username: document.getElementById('username').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      message: document.getElementById('message').value.trim()
+    };
+
+    // Validar formulario
+    const errors = validateForm(formData);
+    
+    if (Object.keys(errors).length > 0) {
+      Object.keys(errors).forEach(field => {
+        showError(field, errors[field]);
+      });
+      return;
+    }
+
+    // Mostrar spinner y deshabilitar botón
+    if (submitBtn && spinner && btnText) {
+      submitBtn.disabled = true;
+      spinner.style.display = 'block';
+      btnText.style.opacity = '0.5';
+    }
+
+    try {
+      console.log('🚀 Enviando mensaje al backend:', formData);
+      
+      const response = await fetch(`${API_BASE_URL}/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      console.log('📡 Respuesta del servidor:', response.status, response.statusText);
+
+      let result;
+      const contentType = response.headers.get('content-type');
+      
+      if (contentType && contentType.includes('application/json')) {
+        result = await response.json();
+        console.log('📋 Datos de respuesta JSON:', result);
+      } else {
+        const textResponse = await response.text();
+        console.log('📋 Respuesta de texto:', textResponse);
+        throw new Error(`El servidor devolvió una respuesta no válida: ${textResponse}`);
+      }
+
+      if (response.ok) {
+        showResponseMessage('¡Mensaje enviado con éxito! Te responderé pronto.', 'success');
+        contactForm.reset();
+        if (charCounter) {
+          charCounter.textContent = '0/2000 caracteres';
+          charCounter.style.color = '#9f6aff';
+        }
+        console.log('✅ Mensaje enviado exitosamente');
+      } else {
+        console.log('❌ Error del servidor:', result);
+        showResponseMessage(result.detail || 'Error al enviar el mensaje. Inténtalo de nuevo.', 'error');
+      }
+
+    } catch (error) {
+      console.error('💥 Error al enviar mensaje:', error);
+      showResponseMessage(`Error de conexión: ${error.message}`, 'error');
+    } finally {
+      // Ocultar spinner y rehabilitar botón
+      if (submitBtn && spinner && btnText) {
+        submitBtn.disabled = false;
+        spinner.style.display = 'none';
+        btnText.style.opacity = '1';
+      }
+    }
+  });
+})();
+
 
 

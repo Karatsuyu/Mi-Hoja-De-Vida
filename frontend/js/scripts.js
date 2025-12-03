@@ -293,3 +293,253 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 })();
 
+// ========== FORMULARIO DE CONTACTO ==========
+(function() {
+  console.log('🔍 Iniciando sistema de formulario...');
+  
+  const form = document.getElementById('contactForm');
+  const responseMessage = document.getElementById('responseMessage');
+  
+  if (!form) {
+    console.log('❌ Formulario no encontrado, no estamos en la página de contacto');
+    return;
+  }
+  
+  console.log('✅ Formulario encontrado, inicializando...');
+  
+  const inputs = {
+    username: document.getElementById('username'),
+    email: document.getElementById('email'),
+    message: document.getElementById('message')
+  };
+  
+  const errors = {
+    username: document.getElementById('username-error'),
+    email: document.getElementById('email-error'),
+    message: document.getElementById('message-error')
+  };
+  
+  const submitBtn = document.getElementById('submitBtn');
+  const btnText = submitBtn.querySelector('.btn-text');
+  const spinner = submitBtn.querySelector('.spinner');
+  const charCount = document.getElementById('char-count');
+  
+  // Configuración de la API
+  const API_BASE_URL = 'http://localhost:8001'; // Puerto 8001 para evitar conflicto con Django
+  console.log('📡 API configurada:', API_BASE_URL);
+  
+  // Contador de caracteres para el mensaje
+  if (inputs.message && charCount) {
+    inputs.message.addEventListener('input', () => {
+      const count = inputs.message.value.length;
+      charCount.textContent = count;
+      
+      // Cambiar color según el límite
+      if (count > 1900) {
+        charCount.style.color = '#ef4444';
+      } else if (count > 1500) {
+        charCount.style.color = '#f59e0b';
+      } else {
+        charCount.style.color = '#64748b';
+      }
+    });
+  }
+  
+  // Validación en tiempo real
+  Object.keys(inputs).forEach(field => {
+    const input = inputs[field];
+    const error = errors[field];
+    
+    if (!input || !error) return;
+    
+    input.addEventListener('blur', () => validateField(field));
+    input.addEventListener('input', () => clearError(field));
+  });
+  
+  function validateField(field) {
+    const input = inputs[field];
+    const error = errors[field];
+    const value = input.value.trim();
+    
+    clearError(field);
+    
+    switch (field) {
+      case 'username':
+        if (!value) {
+          showError(field, 'El nombre es obligatorio');
+          return false;
+        }
+        if (value.length < 2) {
+          showError(field, 'El nombre debe tener al menos 2 caracteres');
+          return false;
+        }
+        if (value.length > 100) {
+          showError(field, 'El nombre no puede exceder 100 caracteres');
+          return false;
+        }
+        break;
+        
+      case 'email':
+        if (!value) {
+          showError(field, 'El email es obligatorio');
+          return false;
+        }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(value)) {
+          showError(field, 'Por favor ingresa un email válido');
+          return false;
+        }
+        break;
+        
+      case 'message':
+        if (!value) {
+          showError(field, 'El mensaje es obligatorio');
+          return false;
+        }
+        if (value.length < 10) {
+          showError(field, 'El mensaje debe tener al menos 10 caracteres');
+          return false;
+        }
+        if (value.length > 2000) {
+          showError(field, 'El mensaje no puede exceder 2000 caracteres');
+          return false;
+        }
+        break;
+    }
+    
+    return true;
+  }
+  
+  function showError(field, message) {
+    const error = errors[field];
+    if (error) {
+      error.textContent = message;
+      error.classList.add('show');
+    }
+  }
+  
+  function clearError(field) {
+    const error = errors[field];
+    if (error) {
+      error.textContent = '';
+      error.classList.remove('show');
+    }
+  }
+  
+  function clearAllErrors() {
+    Object.keys(errors).forEach(field => clearError(field));
+  }
+  
+  function showResponseMessage(message, type) {
+    responseMessage.textContent = message;
+    responseMessage.className = `response-message ${type}`;
+    responseMessage.style.display = 'block';
+    
+    // Auto-hide después de 5 segundos si es éxito
+    if (type === 'success') {
+      setTimeout(() => {
+        responseMessage.style.display = 'none';
+      }, 5000);
+    }
+  }
+  
+  function setLoading(loading) {
+    submitBtn.disabled = loading;
+    
+    if (loading) {
+      btnText.style.opacity = '0';
+      spinner.style.display = 'block';
+      submitBtn.style.cursor = 'not-allowed';
+    } else {
+      btnText.style.opacity = '1';
+      spinner.style.display = 'none';
+      submitBtn.style.cursor = 'pointer';
+    }
+  }
+  
+  // Enviar formulario
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    // Limpiar mensajes anteriores
+    clearAllErrors();
+    responseMessage.style.display = 'none';
+    
+    // Validar todos los campos
+    const isValid = Object.keys(inputs).every(field => validateField(field));
+    
+    if (!isValid) {
+      showResponseMessage('Por favor corrige los errores antes de enviar', 'error');
+      return;
+    }
+    
+    // Preparar datos
+    const formData = {
+      username: inputs.username.value.trim(),
+      email: inputs.email.value.trim(),
+      message: inputs.message.value.trim()
+    };
+    
+    // Enviar a la API
+    setLoading(true);
+    console.log('📤 Enviando datos:', formData);
+    console.log('🌐 URL:', `${API_BASE_URL}/contact`);
+    
+    try {
+      const response = await fetch(`${API_BASE_URL}/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+      
+      console.log('📡 Respuesta recibida:', response.status, response.statusText);
+      
+      // Verificar si la respuesta es JSON válido
+      const contentType = response.headers.get("content-type");
+      console.log('📄 Content-Type:', contentType);
+      
+      if (!contentType || !contentType.includes("application/json")) {
+        const textResponse = await response.text();
+        console.error('❌ Respuesta no es JSON:', textResponse);
+        throw new Error('El servidor devolvió una respuesta no válida (no JSON)');
+      }
+      
+      const result = await response.json();
+      console.log('✅ Datos recibidos:', result);
+      
+      if (response.ok && result.success) {
+        showResponseMessage(result.message, 'success');
+        form.reset();
+        if (charCount) charCount.textContent = '0';
+        
+        // Scroll al mensaje de éxito
+        responseMessage.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'center' 
+        });
+        
+      } else {
+        throw new Error(result.error || 'Error al enviar el mensaje');
+      }
+      
+    } catch (error) {
+      console.error('Error:', error);
+      
+      let errorMessage = 'Error al enviar el mensaje. ';
+      
+      if (error.message.includes('fetch')) {
+        errorMessage += 'Verifica tu conexión a internet y que el servidor esté funcionando.';
+      } else {
+        errorMessage += error.message;
+      }
+      
+      showResponseMessage(errorMessage, 'error');
+    } finally {
+      setLoading(false);
+    }
+  });
+  
+})();
+

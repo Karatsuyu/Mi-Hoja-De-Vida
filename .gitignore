@@ -1,17 +1,140 @@
-# Archivos temporales
-temp_*.css
+# ================================
+# PROYECTO HOJA DE VIDA - GITIGNORE
+# ================================
 
-# Videos (demasiado grandes para GitHub)
-videos/*.mp4
+# ===== BACKEND (Python/FastAPI) =====
+# Virtual environment
+backend/venv/
+backend/env/
+backend/.venv/
+backend/__pycache__/
+backend/*.pyc
+backend/*.pyo
+backend/*.pyd
+backend/.pytest_cache/
+backend/.coverage
 
-# Node modules
-node_modules/
+# Database files
+backend/*.db
+backend/*.sqlite
+backend/*.sqlite3
+backend/messages.db
 
-# Dependencias
-.env
+# Environment variables
+backend/.env
+backend/.env.local
+backend/.env.production
+
+# Logs
+backend/*.log
+backend/logs/
+
+# ===== FRONTEND =====
+# Node modules (si usas npm/yarn)
+frontend/node_modules/
+frontend/package-lock.json
+frontend/yarn.lock
+
+# Build outputs
+frontend/dist/
+frontend/build/
+
+# Cache files
+frontend/.cache/
+frontend/.parcel-cache/
+
+# ===== ARCHIVOS MULTIMEDIA =====
+# Videos grandes
+videos/
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.wmv
+
+# Imágenes grandes (mantener solo las necesarias)
+*.raw
+*.psd
+*.xcf
+
+# ===== ARCHIVOS TEMPORALES =====
+# Temporales CSS/JS
+temp_*
+*.tmp
+*.temp
+*~
 .DS_Store
+Thumbs.db
 
-# IDE
-.vscode/settings.json
+# Backups
+*.bak
+*.backup
 *.swp
 *.swo
+
+# ===== CONFIGURACIÓN DE DESARROLLO =====
+# IDE y editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.fleet/
+
+# Sistema operativo
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# ===== ARCHIVOS ESPECÍFICOS =====
+# Configuración local
+config.local.js
+settings.local.json
+
+# Certificados y llaves
+*.pem
+*.key
+*.crt
+*.p12
+
+# ===== DEPLOYMENT =====
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Netlify
+.netlify/
+
+# Vercel
+.vercel/
+
+# ===== OTROS =====
+# Archivos de sistema
+*~
+.#*
+\#*#
+.\#*
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# Dependency directories
+jspm_packages/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity

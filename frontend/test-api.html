@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test API</title>
+</head>
+<body>
+    <h1>Test de Conexión API</h1>
+    <button onclick="testAPI()">Probar API</button>
+    <div id="result"></div>
+    
+    <script>
+        async function testAPI() {
+            const resultDiv = document.getElementById('result');
+            
+            try {
+                console.log('🔍 Probando conexión a API...');
+                
+                // Probar endpoint raíz primero
+                const response = await fetch('http://localhost:8001/', {
+                    method: 'GET'
+                });
+                
+                console.log('Response status:', response.status);
+                console.log('Response headers:', [...response.headers.entries()]);
+                
+                const data = await response.json();
+                console.log('Response data:', data);
+                
+                resultDiv.innerHTML = `
+                    <h3>✅ Conexión exitosa!</h3>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+                
+                // Ahora probar el endpoint de contacto
+                testContact();
+                
+            } catch (error) {
+                console.error('❌ Error:', error);
+                resultDiv.innerHTML = `
+                    <h3>❌ Error de conexión</h3>
+                    <p>${error.message}</p>
+                `;
+            }
+        }
+        
+        async function testContact() {
+            try {
+                const testData = {
+                    username: 'Usuario Test',
+                    email: 'test@example.com',
+                    message: 'Este es un mensaje de prueba que tiene más de 10 caracteres para cumplir con la validación.'
+                };
+                
+                console.log('📤 Enviando datos de contacto:', testData);
+                
+                const response = await fetch('http://localhost:8001/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(testData)
+                });
+                
+                console.log('📡 Respuesta contacto:', response.status, response.statusText);
+                
+                const result = await response.json();
+                console.log('✅ Resultado contacto:', result);
+                
+                document.getElementById('result').innerHTML += `
+                    <h3>✅ Test de contacto exitoso!</h3>
+                    <pre>${JSON.stringify(result, null, 2)}</pre>
+                `;
+                
+            } catch (error) {
+                console.error('❌ Error en contacto:', error);
+                document.getElementById('result').innerHTML += `
+                    <h3>❌ Error en test de contacto</h3>
+                    <p>${error.message}</p>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
