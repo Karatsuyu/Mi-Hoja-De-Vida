@@ -37,8 +37,9 @@ origins = [
     "http://localhost:8000",
     "http://localhost:5500",
     "http://127.0.0.1:5500",
-    "https://julian-gutierrez-portfolio.netlify.app",  # Cambia por tu dominio
-    "*"  # En desarrollo - remover en producción
+    "https://mi-hoja-de-vida-julian.netlify.app",  # URL de producción Netlify
+    "https://*.netlify.app",  # Cualquier subdominio de Netlify
+    "file://",  # Para archivos locales
 ]
 
 app.add_middleware(
