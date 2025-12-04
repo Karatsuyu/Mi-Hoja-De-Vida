@@ -325,7 +325,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   const charCount = document.getElementById('char-count');
   
   // Configuración de la API
-  const API_BASE_URL = 'http://localhost:8001'; // Puerto 8001 para evitar conflicto con Django
+  const API_BASE_URL = 'https://mi-hoja-de-vida.onrender.com'; // Backend en producción
   console.log('📡 API configurada:', API_BASE_URL);
   
   // Contador de caracteres para el mensaje

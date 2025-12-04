@@ -907,7 +907,7 @@ if (mobileBtn) {
 
 // =============== FORMULARIO DE CONTACTO RÚNICO ===============
 (function initRunicContactForm() {
-  const API_BASE_URL = 'http://localhost:8001';
+  const API_BASE_URL = 'https://mi-hoja-de-vida.onrender.com';
   
   const contactForm = document.getElementById('contactForm');
   const messageInput = document.getElementById('message');
