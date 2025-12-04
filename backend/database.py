@@ -16,7 +16,13 @@ if DATABASE_URL.startswith("sqlite"):
         connect_args={"check_same_thread": False}
     )
 else:
-    engine = create_engine(DATABASE_URL)
+    # Configuración optimizada para PostgreSQL/Supabase
+    engine = create_engine(
+        DATABASE_URL,
+        pool_pre_ping=True,        # Verifica conexiones antes de usarlas
+        pool_recycle=300,          # Recicla conexiones cada 5 minutos
+        connect_args={"sslmode": "require"}  # SSL obligatorio para Supabase
+    )
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
