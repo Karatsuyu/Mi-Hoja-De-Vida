@@ -1,7 +1,0 @@
-# Netlify redirects file
-
-# Redirigir todas las rutas desconocidas al index.html para SPA
-/*    /index.html   200
-
-# Redirigir específicamente la página futurista
-/segundo-estilo/*    /Hoja%20de%20vida%20Segundo%20Estilo/index.html   200
