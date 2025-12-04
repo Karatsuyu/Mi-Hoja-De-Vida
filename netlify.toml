@@ -2,6 +2,7 @@
 [build]
   # Directorio de publicación (desde la raíz del repositorio)
   publish = "frontend"
+  command = "echo 'Static site - no build needed'"
   
 # Configuración de redirects y rewrites
 [[redirects]]
