@@ -4,7 +4,9 @@ from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
 import logging
+import os
 from datetime import datetime
+from typing import List
 
 # Importar módulos locales
 from database import get_database, engine, Base
@@ -32,15 +34,27 @@ app = FastAPI(
 )
 
 # Configurar CORS
-origins = [
-    "http://localhost:3000",
-    "http://localhost:8000",
-    "http://localhost:5500",
-    "http://127.0.0.1:5500",
-    "https://mi-hoja-de-vida-julian.netlify.app",  # URL de producción Netlify
-    "https://*.netlify.app",  # Cualquier subdominio de Netlify
-    "file://",  # Para archivos locales
-]
+# Función para configurar orígenes dinámicamente
+def get_cors_origins() -> List[str]:
+    base_origins = [
+        "http://localhost:3000",
+        "http://localhost:8000", 
+        "http://localhost:5500",
+        "http://127.0.0.1:5500",
+        "https://mi-hoja-de-vida-julian.netlify.app",  # URL de producción Netlify
+        "file://",  # Para archivos locales
+    ]
+    
+    # En producción, ser más restrictivo
+    if os.getenv("APP_ENV") == "production":
+        return [
+            "https://mi-hoja-de-vida-julian.netlify.app",
+            "https://deploy-preview--mi-hoja-de-vida-julian.netlify.app",
+        ]
+    
+    return base_origins
+
+origins = get_cors_origins()
 
 app.add_middleware(
     CORSMiddleware,
