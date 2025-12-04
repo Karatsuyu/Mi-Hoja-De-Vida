@@ -17,14 +17,22 @@ def send_notification_email(username: str, email: str, message: str) -> bool:
     Envía un email de notificación cuando se recibe un nuevo mensaje del formulario
     """
     try:
-        # Configuración del email
-        sender_email = os.getenv("MAIL_SENDER")
-        sender_password = os.getenv("MAIL_PASSWORD")
-        receiver_email = os.getenv("MAIL_RECEIVER")
+        # Configuración del email - Compatibilidad con variables locales y de Render
+        sender_email = os.getenv("EMAIL_HOST_USER") or os.getenv("MAIL_SENDER")
+        sender_password = os.getenv("EMAIL_HOST_PASSWORD") or os.getenv("MAIL_PASSWORD") 
+        receiver_email = os.getenv("MAIL_RECEIVER") or sender_email  # Usar mismo email como receptor
+        smtp_server = os.getenv("EMAIL_HOST", "smtp.gmail.com")
+        smtp_port = int(os.getenv("EMAIL_PORT", "465"))
+        use_tls = os.getenv("EMAIL_USE_TLS", "True").lower() == "true"
         
-        if not all([sender_email, sender_password, receiver_email]):
+        if not all([sender_email, sender_password]):
             logger.error("Configuración de email incompleta en variables de entorno")
+            logger.error(f"EMAIL_HOST_USER: {'✓' if sender_email else '✗'}")
+            logger.error(f"EMAIL_HOST_PASSWORD: {'✓' if sender_password else '✗'}")
             return False
+        
+        logger.info(f"Configurando email: {sender_email} -> {receiver_email}")
+        logger.info(f"SMTP Server: {smtp_server}:{smtp_port}, TLS: {use_tls}")
 
         # Crear mensaje
         msg = MIMEMultipart("alternative")
@@ -87,12 +95,25 @@ def send_notification_email(username: str, email: str, message: str) -> bool:
         msg.attach(part_text)
         msg.attach(part_html)
 
-        # Enviar email usando Gmail SMTP
+        # Enviar email usando configuración dinámica
         context = ssl.create_default_context()
         
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
-            server.login(sender_email, sender_password)
-            server.sendmail(sender_email, receiver_email, msg.as_string())
+        if use_tls and smtp_port == 465:
+            # SSL/TLS connection (Gmail default)
+            with smtplib.SMTP_SSL(smtp_server, smtp_port, context=context) as server:
+                server.login(sender_email, sender_password)
+                server.sendmail(sender_email, receiver_email, msg.as_string())
+        elif use_tls:
+            # STARTTLS connection
+            with smtplib.SMTP(smtp_server, smtp_port) as server:
+                server.starttls(context=context)
+                server.login(sender_email, sender_password)
+                server.sendmail(sender_email, receiver_email, msg.as_string())
+        else:
+            # Plain connection (no encryption)
+            with smtplib.SMTP(smtp_server, smtp_port) as server:
+                server.login(sender_email, sender_password)
+                server.sendmail(sender_email, receiver_email, msg.as_string())
         
         logger.info(f"Email enviado exitosamente para mensaje de {username}")
         return True
@@ -109,10 +130,15 @@ def send_confirmation_email(user_email: str, username: str) -> bool:
     Envía un email de confirmación al usuario que envió el mensaje
     """
     try:
-        sender_email = os.getenv("MAIL_SENDER")
-        sender_password = os.getenv("MAIL_PASSWORD")
+        # Usar la misma configuración que send_notification_email
+        sender_email = os.getenv("EMAIL_HOST_USER") or os.getenv("MAIL_SENDER")
+        sender_password = os.getenv("EMAIL_HOST_PASSWORD") or os.getenv("MAIL_PASSWORD")
+        smtp_server = os.getenv("EMAIL_HOST", "smtp.gmail.com")
+        smtp_port = int(os.getenv("EMAIL_PORT", "465"))
+        use_tls = os.getenv("EMAIL_USE_TLS", "True").lower() == "true"
         
         if not all([sender_email, sender_password]):
+            logger.error("Configuración de email incompleta para confirmación")
             return False
 
         msg = MIMEMultipart("alternative")
@@ -153,9 +179,20 @@ def send_confirmation_email(user_email: str, username: str) -> bool:
         msg.attach(part_html)
 
         context = ssl.create_default_context()
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
-            server.login(sender_email, sender_password)
-            server.sendmail(sender_email, user_email, msg.as_string())
+        
+        if use_tls and smtp_port == 465:
+            with smtplib.SMTP_SSL(smtp_server, smtp_port, context=context) as server:
+                server.login(sender_email, sender_password)
+                server.sendmail(sender_email, user_email, msg.as_string())
+        elif use_tls:
+            with smtplib.SMTP(smtp_server, smtp_port) as server:
+                server.starttls(context=context)
+                server.login(sender_email, sender_password)
+                server.sendmail(sender_email, user_email, msg.as_string())
+        else:
+            with smtplib.SMTP(smtp_server, smtp_port) as server:
+                server.login(sender_email, sender_password)
+                server.sendmail(sender_email, user_email, msg.as_string())
         
         return True
     
